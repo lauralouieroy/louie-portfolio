@@ -1,0 +1,82 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px;
+  height: 90vh;
+}
+
+.hero-left {
+  flex: 1;
+}
+
+.stats {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 40px;
+}
+
+.stats h2 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.stats p {
+  font-size: 14px;
+  color: #777;
+}
+
+.intro h1 {
+  font-size: 120px;
+  margin: 0;
+}
+
+.intro p {
+  font-size: 20px;
+  color: #444;
+}
+
+.highlight {
+  font-weight: 600;
+}
+
+.scroll {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.scroll:hover {
+  font-weight: bolder;
+}
+
+.scroll::after {
+  content: ' ↓';
+  animation: bounce 1.2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-img {
+  width: 750px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+
