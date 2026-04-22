@@ -1,9 +1,7 @@
 .about {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
   padding: 80px 60px;
-  background-color: #fff;
 }
 
 .about-left {
@@ -17,7 +15,7 @@
 
 .about-left p {
   font-size: 18px;
-  color: #444;
+  color: #fff;
   line-height: 1.7;
   margin-bottom: 20px;
 }

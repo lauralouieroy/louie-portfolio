@@ -1,10 +1,11 @@
 import './App.css';
 import { About } from './components/About';
-import { Experience } from './components/Experience';
+import { Blog } from './components/Blog';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { Navbar } from './components/Navbar';
-import { Portfolio } from './components/Portfolio';
+import { Project } from './components/Project';
+import { Technology } from './components/Technology';
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <Navbar />
       <Hero />
       <About />
-      <Experience />
-      <Portfolio />
+      <Technology />
+      <Project />
+      <Blog />
       <Footer />
     </div>
   );

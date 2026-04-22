@@ -1,0 +1,90 @@
+.tech {
+  padding: 120px 60px;
+  text-align: center;
+}
+
+/* HEADER */
+.tech-header h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.tech-header h1 {
+  font-size: 40px;
+  margin-bottom: 60px;
+}
+
+/* GRID */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* CARD */
+.tech-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+  cursor: pointer;
+
+  /* 🔥 floating animation */
+  animation: float 4s ease-in-out infinite;
+}
+
+/* stagger animation */
+.tech-card:nth-child(odd) {
+  animation-delay: 0.5s;
+}
+
+.tech-card:nth-child(even) {
+  animation-delay: 1s;
+}
+
+/* ICON */
+.icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #000; /* 👈 ADD THIS */
+}
+
+/* TEXT */
+.tech-card p {
+  color: #333;
+  font-size: 14px;
+}
+
+/* HOVER */
+.tech-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* FLOAT ANIMATION */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .tech {
+    padding: 80px 30px;
+  }
+}
+
+
+
+@media only screen and (min-width: 1367px) {
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 30px;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+}

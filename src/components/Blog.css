@@ -1,0 +1,120 @@
+.blogs {
+  display: flex;
+  justify-content: flex-start;
+  padding: 100px 60px;
+}
+
+/* container (same behavior as projects) */
+.blog-container {
+  width: 100%;
+  max-width: 1800px; /* wide like your projects */
+}
+
+/* title */
+.section-title {
+  font-size: 48px;
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+/* list */
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* item */
+.blog-item {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 25px;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #111;
+  transition: 0.3s ease;
+}
+
+/* hover (lighter than projects) */
+.blog-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+.blog-image {
+  flex: 0 0 160px;
+}
+
+.blog-image img {
+  width: 160px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* LEFT */
+.blog-left {
+  flex: 1;
+}
+
+.blog-left h2 {
+  margin: 5px 0 10px;
+  font-size: 20px;
+}
+
+.blog-left p {
+  color: #555;
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+/* READ TIME */
+.read-time {
+  font-size: 12px;
+  color: #888;
+}
+
+/* RIGHT */
+.blog-right {
+  display: flex;
+  align-items: center;
+}
+
+/* BUTTON */
+.read-btn {
+  background: #111;
+  color: #fff;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.read-btn:hover {
+  background: #333;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .blogs {
+    padding: 80px 30px;
+  }
+
+  .blog-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .blog-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .blog-right {
+    margin-top: 10px;
+  }
+}
