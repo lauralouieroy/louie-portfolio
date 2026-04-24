@@ -34,7 +34,7 @@ export const Project = () => {
   ];
 
   return (
-    <section id="project" className="projects">
+    <section id="projects" className="projects">
       <div className="project-container">
 
         <h1 className="section-title">Projects</h1>

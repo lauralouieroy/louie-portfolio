@@ -8,10 +8,11 @@ function useCounter(target, duration = 1000) {
 
   useEffect(() => {
     let start = 0;
-    const increment = target / (duration / 16); // ~60fps
+    const increment = target / (duration / 16);
 
     const timer = setInterval(() => {
       start += increment;
+
       if (start >= target) {
         setCount(target);
         clearInterval(timer);
@@ -34,28 +35,34 @@ export const Hero = () => {
   const experience = useCounter(3, 1400);
   const blogs = useCounter(1, 1000);
 
+  /* ✅ IMPORTANT FOR GITHUB PAGES */
+  const resumePath = `${process.env.PUBLIC_URL}/resume.pdf`;
+
   return (
     <>
       <section className="hero">
         <div className="hero-left">
-        <div className="stats">
-          <div>
-            <h2>{experience}+</h2>
-            <p>Years of experience</p>
+          <div className="stats">
+            <div>
+              <h2>{experience}+</h2>
+              <p>Years of experience</p>
+            </div>
+
+            <div>
+              <h2>{projects}</h2>
+              <p>Projects completed</p>
+            </div>
+
+            <div>
+              <h2>{blogs}</h2>
+              <p>Blogs</p>
+            </div>
+
+            <div>
+              <h2>{certifications}</h2>
+              <p>Certifications</p>
+            </div>
           </div>
-          <div>
-            <h2>{projects}</h2>
-            <p>Projects completed</p>
-          </div>
-          <div>
-            <h2>{blogs}</h2>
-            <p>Blogs</p>
-          </div>
-          <div>
-            <h2>{certifications}</h2>
-            <p>Certifications</p>
-          </div>
-        </div>
 
           <div className="intro">
             <h1 className="typing">
@@ -69,12 +76,12 @@ export const Hero = () => {
                 delaySpeed={1500}
               />
             </h1>
+
             <p>
               — I’m <span className="highlight">Louie Laura</span>, a
               Programmer/Developer
             </p>
 
-            {/* BUTTON */}
             <button
               className="resume-btn"
               onClick={() => setShowResume(true)}
@@ -88,7 +95,9 @@ export const Hero = () => {
             onClick={() => {
               const footer = document.getElementById("footer");
               if (footer) {
-                footer.scrollIntoView({ behavior: "smooth" });
+                footer.scrollIntoView({
+                  behavior: "smooth",
+                });
               }
             }}
           >
@@ -97,11 +106,15 @@ export const Hero = () => {
         </div>
 
         <div className="hero-right">
-          <img src={profile} alt="Profile" className="profile-img" />
+          <img
+            src={profile}
+            alt="Profile"
+            className="profile-img"
+          />
         </div>
       </section>
 
-      {/* ✅ ADD THIS MODAL */}
+      {/* RESUME MODAL */}
       {showResume && (
         <div className="resume-modal">
           <div className="resume-content">
@@ -112,14 +125,19 @@ export const Hero = () => {
               ✕
             </button>
 
+            {/* ✅ FIXED FOR GITHUB PAGES */}
             <iframe
-              src="/resume.pdf"
+              src={resumePath}
               title="Resume"
               className="resume-frame"
             />
 
             <div className="resume-actions">
-              <a href="/resume.pdf" download className="download-btn">
+              <a
+                href={resumePath}
+                download
+                className="download-btn"
+              >
                 Download Resume
               </a>
             </div>
