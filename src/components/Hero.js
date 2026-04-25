@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
+import {
+  FaArrowRight,
+  FaBriefcase,
+  FaProjectDiagram,
+  FaPenNib,
+  FaAward,
+} from "react-icons/fa";
 import profile from "../assets/Profile-icon.png";
+import heroBg from "../assets/hero-bg.png";
 import "./Hero.css";
 
 function useCounter(target, duration = 1000) {
@@ -30,44 +38,47 @@ function useCounter(target, duration = 1000) {
 export const Hero = () => {
   const [showResume, setShowResume] = useState(false);
 
-  const projects = useCounter(2, 1000);
+  const projects = useCounter(12, 1000);
   const certifications = useCounter(10, 1200);
   const experience = useCounter(3, 1400);
-  const blogs = useCounter(1, 1000);
+  const blogs = useCounter(5, 1000);
 
-  /* ✅ IMPORTANT FOR GITHUB PAGES */
   const resumePath = `${process.env.PUBLIC_URL}/resume.pdf`;
 
   return (
     <>
-      <section className="hero">
+      <section
+  className="hero"
+  style={{
+    backgroundImage: `url(${heroBg})`,
+  }}
+>
         <div className="hero-left">
-          <div className="stats">
-            <div>
-              <h2>{experience}+</h2>
-              <p>Years of experience</p>
-            </div>
+          {/* TOP LABEL */}
+          <p className="hero-label">
+            FULLSTACK DEVELOPER • SOFTWARE ENGINEER
+          </p>
 
-            <div>
-              <h2>{projects}</h2>
-              <p>Projects completed</p>
-            </div>
+          {/* MAIN TITLE */}
+          <h1 className="hero-title">
+            Building digital
+            <br />
+            solutions that
+            <br />
+            make an <span>impact.</span>
+          </h1>
 
-            <div>
-              <h2>{blogs}</h2>
-              <p>Blogs</p>
-            </div>
-
-            <div>
-              <h2>{certifications}</h2>
-              <p>Certifications</p>
-            </div>
-          </div>
-
-          <div className="intro">
-            <h1 className="typing">
+          {/* TYPEWRITER REMAINS */}
+          <div className="hero-subtitle">
+            <span>I create </span>
+            <span className="typing">
               <Typewriter
-                words={["Hello", "Hi", "Welcome"]}
+                words={[
+                  "Scalable Systems",
+                  "Enterprise Applications",
+                  "Modern UI/UX",
+                  "Fullstack Solutions",
+                ]}
                 loop={true}
                 cursor
                 cursorStyle="|"
@@ -75,37 +86,71 @@ export const Hero = () => {
                 deleteSpeed={50}
                 delaySpeed={1500}
               />
-            </h1>
+            </span>
+          </div>
 
-            <p>
-              — I’m <span className="highlight">Louie Laura</span>, a
-              Programmer/Developer
-            </p>
+          {/* DESCRIPTION */}
+          <p className="hero-description">
+            I’m <span>Louie Laura</span>, a passionate developer who loves
+            turning ideas into clean, efficient and intuitive solutions.
+          </p>
+
+          {/* BUTTONS */}
+          <div className="hero-actions">
+            {/* CHANGED TO CONTACT ME */}
+            <a href="#footer" className="primary-btn">
+              Contact Me
+            </a>
 
             <button
-              className="resume-btn"
+              className="secondary-btn"
               onClick={() => setShowResume(true)}
             >
-              Resume
+              Download Resume
             </button>
           </div>
 
-          <p
-            className="scroll"
-            onClick={() => {
-              const footer = document.getElementById("footer");
-              if (footer) {
-                footer.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }
-            }}
-          >
-            Scroll down ↓
-          </p>
+          {/* STATS BELOW */}
+{/* STATS BELOW */}
+      <div className="stats">
+        <div className="stat-card">
+          <div className="stat-icon">
+            <FaBriefcase />
+          </div>
+          <h2>{experience}+</h2>
+          <p>Years Experience</p>
         </div>
 
+        <div className="stat-card">
+          <div className="stat-icon">
+            <FaProjectDiagram />
+          </div>
+          <h2>{projects}+</h2>
+          <p>Projects Completed</p>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-icon">
+            <FaPenNib />
+          </div>
+          <h2>{blogs}+</h2>
+          <p>Blogs Published</p>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-icon">
+            <FaAward />
+          </div>
+          <h2>{certifications}+</h2>
+          <p>Certifications</p>
+        </div>
+      </div>
+        </div>
+
+        {/* RIGHT SIDE IMAGE */}
         <div className="hero-right">
+          <div className="image-glow"></div>
+
           <img
             src={profile}
             alt="Profile"
@@ -125,7 +170,6 @@ export const Hero = () => {
               ✕
             </button>
 
-            {/* ✅ FIXED FOR GITHUB PAGES */}
             <iframe
               src={resumePath}
               title="Resume"
