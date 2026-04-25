@@ -1,23 +1,27 @@
 {
   "files": {
     "main.css": "/louie-portfolio/static/css/main.c715ff9b.css",
-    "main.js": "/louie-portfolio/static/js/main.a668d96a.js",
+    "main.js": "/louie-portfolio/static/js/main.914733cd.js",
     "static/js/453.3e16cc51.chunk.js": "/louie-portfolio/static/js/453.3e16cc51.chunk.js",
+    "static/media/img4.png": "/louie-portfolio/static/media/img4.f791a4af1e51da21bd6c.png",
+    "static/media/img2.png": "/louie-portfolio/static/media/img2.8261bcfaa6aca602f713.png",
+    "static/media/img3.png": "/louie-portfolio/static/media/img3.150fb501b92c3c369b41.png",
+    "static/media/blog3.png": "/louie-portfolio/static/media/blog3.3412350ccc72b826096b.png",
+    "static/media/img1.png": "/louie-portfolio/static/media/img1.0d33c3268e16ba028d6a.png",
+    "static/media/blog1.png": "/louie-portfolio/static/media/blog1.e98c09f2e9a3d51c8195.png",
+    "static/media/blog4.png": "/louie-portfolio/static/media/blog4.37dd44b6f08b3771cd3a.png",
+    "static/media/blog2.png": "/louie-portfolio/static/media/blog2.cf87f4f394e43802c380.png",
     "static/media/about-bg.png": "/louie-portfolio/static/media/about-bg.b0313576e6c50933b0ed.png",
     "static/media/hero-bg.png": "/louie-portfolio/static/media/hero-bg.2ced274cc24e5e0bd5bd.png",
     "static/media/hero-icon.png": "/louie-portfolio/static/media/hero-icon.e99c1d56aa7c9cddd924.png",
     "static/media/Profile.png": "/louie-portfolio/static/media/Profile.a1006ae3232c6ed97953.png",
-    "static/media/img2.jpg": "/louie-portfolio/static/media/img2.ff6ea7be6f1dc9e45378.jpg",
-    "static/media/img3.jpg": "/louie-portfolio/static/media/img3.edb5d155ed2c13edf590.jpg",
-    "static/media/img4.jpg": "/louie-portfolio/static/media/img4.edb5d155ed2c13edf590.jpg",
-    "static/media/img1.jpg": "/louie-portfolio/static/media/img1.5682af4e9516196e1fd2.jpg",
     "index.html": "/louie-portfolio/index.html",
     "main.c715ff9b.css.map": "/louie-portfolio/static/css/main.c715ff9b.css.map",
-    "main.a668d96a.js.map": "/louie-portfolio/static/js/main.a668d96a.js.map",
+    "main.914733cd.js.map": "/louie-portfolio/static/js/main.914733cd.js.map",
     "453.3e16cc51.chunk.js.map": "/louie-portfolio/static/js/453.3e16cc51.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c715ff9b.css",
-    "static/js/main.a668d96a.js"
+    "static/js/main.914733cd.js"
   ]
 }
