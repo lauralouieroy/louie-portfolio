@@ -8,10 +8,10 @@ import {
 } from "react-icons/fa";
 import "./Project.css";
 
-import img1 from "../assets/img1.jpg";
-import img2 from "../assets/img2.jpg";
-import img3 from "../assets/img3.jpg";
-import img4 from "../assets/img4.jpg";
+import img1 from "../assets/img1.png";
+import img2 from "../assets/img2.png";
+import img3 from "../assets/img3.png";
+import img4 from "../assets/img4.png";
 
 export const Project = () => {
   const projects = [
@@ -60,8 +60,6 @@ export const Project = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  /* ONLY MOVE IF PROJECTS > 3 */
-
   const nextSlide = () => {
     if (projects.length <= 3) return;
 
@@ -76,22 +74,22 @@ export const Project = () => {
     );
   };
 
-  /* SHOW ONLY 3 PROJECTS */
+const isMobile = window.innerWidth <= 900;
 
-  const visibleProjects =
-    projects.length <= 3
-      ? projects
-      : [
-          projects[startIndex],
-          projects[(startIndex + 1) % projects.length],
-          projects[(startIndex + 2) % projects.length],
-        ];
+const visibleProjects = isMobile
+  ? [projects[startIndex]]
+  : projects.length <= 3
+  ? projects
+  : [
+      projects[startIndex],
+      projects[(startIndex + 1) % projects.length],
+      projects[(startIndex + 2) % projects.length],
+    ];
 
   return (
     <>
       <section id="projects" className="projects">
         <div className="project-container">
-
           {/* HEADER */}
           <div className="project-header">
             <div>

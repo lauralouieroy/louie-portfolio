@@ -13,7 +13,7 @@ export const About = () => {
     >
       {/* LEFT SIDE */}
       <div className="about-left">
-        <p className="about-label">✦ ABOUT ME</p>
+        <p className="about-label">ABOUT ME</p>
 
         <h2 className="about-title">
           Passionate about

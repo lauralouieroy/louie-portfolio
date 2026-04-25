@@ -6,10 +6,10 @@ import {
 } from "react-icons/fa";
 import "./Blog.css";
 
-import blog1 from "../assets/img1.jpg";
-import blog2 from "../assets/img2.jpg";
-import blog3 from "../assets/img3.jpg";
-import blog4 from "../assets/img4.jpg";
+import blog1 from "../assets/blog1.png";
+import blog2 from "../assets/blog2.png";
+import blog3 from "../assets/blog3.png";
+import blog4 from "../assets/blog4.png";
 
 export const Blog = () => {
   const blogs = [
@@ -67,7 +67,7 @@ In enterprise projects, writing clean JavaScript matters because multiple develo
     },
 
     {
-      title: "How I Structure My React Projects",
+      title: "How I Structure My Angular Projects",
       desc:
         "My personal approach to structuring scalable React applications for enterprise-level development.",
       read: "6 min read",
@@ -137,14 +137,17 @@ For enterprise applications like SSO systems and onboarding dashboards, backend 
     );
   };
 
-  const visibleBlogs =
-    blogs.length <= 3
-      ? blogs
-      : [
-          blogs[startIndex],
-          blogs[(startIndex + 1) % blogs.length],
-          blogs[(startIndex + 2) % blogs.length],
-        ];
+  const isMobile = window.innerWidth <= 900;
+
+const visibleBlogs =  isMobile
+    ? [blogs[startIndex]]
+    : blogs.length <= 3
+    ? blogs
+    : [
+        blogs[startIndex],
+        blogs[(startIndex + 1) % blogs.length],
+        blogs[(startIndex + 2) % blogs.length],
+      ];
 
   return (
     <>

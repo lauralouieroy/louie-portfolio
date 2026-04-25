@@ -7,7 +7,7 @@ import {
   FaPenNib,
   FaAward,
 } from "react-icons/fa";
-import profile from "../assets/Profile-icon.png";
+import profile from "../assets/hero-icon.png";
 import heroBg from "../assets/hero-bg.png";
 import "./Hero.css";
 
@@ -35,19 +35,19 @@ function useCounter(target, duration = 1000) {
   return count;
 }
 
-export const Hero = () => {
+export const Hero = ({ startAnimation }) => {
   const [showResume, setShowResume] = useState(false);
 
-  const projects = useCounter(12, 1000);
-  const certifications = useCounter(10, 1200);
-  const experience = useCounter(3, 1400);
-  const blogs = useCounter(5, 1000);
+  const projects = useCounter(startAnimation ? 12 : 0, 1000);
+  const certifications = useCounter(startAnimation ? 10 : 0, 1200);
+  const experience = useCounter(startAnimation ? 3 : 0, 1400);
+  const blogs = useCounter(startAnimation ? 5 : 0, 1000);
 
   const resumePath = `${process.env.PUBLIC_URL}/resume.pdf`;
-
   return (
     <>
       <section
+      id="hero"
   className="hero"
   style={{
     backgroundImage: `url(${heroBg})`,
@@ -56,7 +56,7 @@ export const Hero = () => {
         <div className="hero-left">
           {/* TOP LABEL */}
           <p className="hero-label">
-            FULLSTACK DEVELOPER • SOFTWARE ENGINEER
+            SOFTWARE ENGINEER
           </p>
 
           {/* MAIN TITLE */}

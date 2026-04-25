@@ -246,59 +246,197 @@
 
 /* MOBILE */
 
+/* ================= MOBILE RESPONSIVE HERO ================= */
+
+/* ================= MOBILE RESPONSIVE HERO ================= */
+
 @media (max-width: 900px) {
   .hero {
+    min-height: auto;
     flex-direction: column;
-    padding: 140px 30px 80px;
-    text-align: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 120px 24px 70px;
+    gap: 28px;
+    text-align: left;
     position: relative;
     overflow: hidden;
+    background-size: cover;
+    background-position: center;
   }
 
-  /* ADD THIS FOR LOWER BACKGROUND OPACITY */
+  /* dark overlay like wireframe */
   .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 11, 30, 0.65); /* adjust opacity here */
+    background: rgba(0, 10, 30, 0.72);
     z-index: 1;
   }
 
-  /* make content stay above overlay */
   .hero-left,
   .hero-right {
     position: relative;
     z-index: 2;
+    width: 100%;
   }
 
-  .hero-title {
-    font-size: 48px;
-  }
-
-  .hero-subtitle {
-    font-size: 20px;
-  }
-
-  .hero-description {
-    font-size: 16px;
-    margin: 25px auto 0;
-  }
-
-  .hero-actions {
-    justify-content: center;
-  }
-
-  .stats {
-    grid-template-columns: 1fr;
-    margin-top: 40px;
-  }
-
-  .profile-img {
+  /* remove right hero image on mobile */
+  .hero-right {
     display: none;
   }
 
+  /* label */
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  /* title */
+  .hero-title {
+    font-size: 44px;
+    line-height: 1.12;
+    margin-bottom: 8px;
+  }
+
+  /* subtitle */
+  .hero-subtitle {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  /* description */
+  .hero-description {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 100%;
+  }
+
+  /* ================= BUTTONS ================= */
+
+  .hero-actions {
+    width: 50%;
+    margin-top: 28px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* ================= STATS (MATCH INSPO) ================= */
+
+  .stats {
+    width: 100%;
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+  }
+
+  .stat-card {
+    padding: 20px 18px;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    display: block;
+    min-height: 130px;
+  }
+
+  /* vertical divider */
+  .stat-card:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* horizontal divider */
+  .stat-card:nth-child(1),
+  .stat-card:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stat-card:hover {
+    transform: none;
+  }
+
+  .stat-icon {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #2aa7ff;
+  }
+
+  .stat-card h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .stat-card p {
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #cde8ff;
+  }
+
+  /* modal */
   .resume-content {
     width: 95%;
-    height: 80%;
+    height: 82%;
+    border-radius: 16px;
+  }
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 110px 20px 60px;
+  }
+
+  .hero-title {
+    font-size: 38px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    font-size: 14px;
+    padding: 14px 18px;
+  }
+
+  .stat-card {
+    padding: 18px 14px;
+    min-height: 120px;
+  }
+
+  .stat-card h2 {
+    font-size: 24px;
+  }
+
+  .stat-card p {
+    font-size: 12px;
   }
 }

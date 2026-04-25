@@ -210,6 +210,171 @@
 
 @media (max-width: 900px) {
   .blogs {
+    padding: 80px 24px;
+  }
+
+  /* ================= HEADER ================= */
+
+  .blog-header {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .blog-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-size: 34px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .section-title span {
+    display: inline;
+  }
+
+  /* ================= ARROWS ================= */
+
+  .carousel-controls {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .carousel-controls button {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+
+  .carousel-controls button:hover {
+    transform: none;
+  }
+
+  /* ================= BLOG GRID ================= */
+
+  /* MOBILE = ONLY 1 BLOG CARD */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .blog-card {
+    width: 100%;
+    border-radius: 18px;
+    min-height: auto;
+  }
+
+  .blog-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .blog-image {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .blog-content {
+    padding: 20px;
+  }
+
+  .blog-date {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .blog-content h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .blog-content p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ================= FOOTER ================= */
+
+  .blog-footer {
+    margin-top: 18px;
+  }
+
+  .blog-footer span {
+    font-size: 13px;
+  }
+
+  /* ================= MODAL ================= */
+
+  .blog-modal {
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blog-modal-content {
+    width: 100%;
+    max-width: 420px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 22px;
+    border-radius: 20px;
+    position: relative;
+  }
+
+  .close-modal {
+    width: 38px;
+    height: 38px;
+    top: 14px;
+    right: 14px;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+
+  .modal-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 22px;
+  }
+
+  .blog-modal-content h2 {
+    font-size: 28px;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .blog-modal-content p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .blog-modal-content h4 {
+    margin-top: 22px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .blog-full-content {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 10px;
+  }
+}@media (max-width: 900px) {
+  .blogs {
     padding: 80px 30px;
   }
 
