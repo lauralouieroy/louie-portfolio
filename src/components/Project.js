@@ -13,6 +13,8 @@ import img2 from "../assets/img2.png";
 import img3 from "../assets/img3.png";
 import img4 from "../assets/img4.png";
 
+import { ScrollReveal } from "./Utils/ScrollReveal";
+
 export const Project = () => {
   const projects = [
     {
@@ -88,6 +90,7 @@ const visibleProjects = isMobile
 
   return (
     <>
+    <ScrollReveal>
       <section id="projects" className="projects">
         <div className="project-container">
           {/* HEADER */}
@@ -152,6 +155,7 @@ const visibleProjects = isMobile
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* MODAL */}
       {selectedProject && (

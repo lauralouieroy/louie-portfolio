@@ -16,7 +16,9 @@ import {
   SiTypescript,
 } from "react-icons/si";
 
+import { ScrollReveal } from "./Utils/ScrollReveal";
 import "./Technology.css";
+
 
 export const Technology = () => {
   const [showAll, setShowAll] = useState(false);
@@ -88,6 +90,7 @@ export const Technology = () => {
     : techs.slice(0, initialCount);
 
   return (
+    <ScrollReveal>
     <section id="technology" className="tech">
       <div className="tech-header">
         <p className="tech-label">TECHNOLOGIES</p>
@@ -117,5 +120,6 @@ export const Technology = () => {
         </button>
       )}
     </section>
+    </ScrollReveal>
   );
 };

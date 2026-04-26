@@ -5,8 +5,11 @@ html {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-    background:
-    radial-gradient(circle at center, #0b3c67 0%, #031321 70%);
+  background: radial-gradient(
+    circle at center,
+    #0b3c67 0%,
+    #031321 70%
+  );
   color: #fff;
   overflow-x: hidden;
   width: 100%;
@@ -17,24 +20,44 @@ html {
   flex-direction: column;
 }
 
-/* ================= PREMIUM PRELOADER ================= */
+/* ================= SCROLL PROGRESS ================= */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #2aa7ff;
+  transform-origin: left;
+  z-index: 999999;
+  box-shadow: 0 0 20px rgba(42, 167, 255, 0.4);
+}
+
+/* ================= PRELOADER ================= */
 
 .preloader {
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(circle at center, #0b3c67 0%, #031321 70%);
+  background: radial-gradient(
+    circle at center,
+    #0b3c67 0%,
+    #031321 70%
+  );
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999999;
 
   animation: curtainUp 1.3s ease forwards;
-  animation-delay: 1.8s;
+  animation-delay: 4s;
 }
 
 .preloader-content {
   text-align: center;
+  width: 100%;
+  max-width: 500px;
+  padding: 0 30px;
 }
 
 .preloader-logo {
@@ -42,15 +65,15 @@ html {
   height: 90px;
   margin: 0 auto 24px;
   border-radius: 22px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(20px);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 
   animation: floatLogo 2.5s ease-in-out infinite;
 }
@@ -66,7 +89,6 @@ html {
   font-weight: 700;
   letter-spacing: 3px;
   margin: 0;
-
   animation: fadeInUp 1s ease;
 }
 
@@ -77,6 +99,145 @@ html {
   color: #9fd7ff;
   text-transform: uppercase;
 }
+
+/* ================= PROGRESS ================= */
+
+.preloader-progress {
+  margin-top: 40px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    #2aa7ff,
+    #67d1ff
+  );
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  margin-top: 14px;
+  font-size: 14px;
+  color: #cde8ff;
+  letter-spacing: 1px;
+}
+
+/* ================= WORK IN PROGRESS MODAL ================= */
+
+.notice-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  padding: 20px;
+}
+
+.notice-content {
+  width: 100%;
+  max-width: 560px;
+  background: rgba(10, 25, 45, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 50px 40px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  animation: fadeInUp 0.5s ease;
+}
+
+.notice-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.notice-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.notice-icon {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: rgba(255, 193, 7, 0.12);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffd54a;
+  font-size: 34px;
+
+  box-shadow: 0 0 40px rgba(255, 193, 7, 0.08);
+}
+
+.notice-label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #ffd54a;
+  margin-bottom: 14px;
+}
+
+.notice-content h2 {
+  font-size: 36px;
+  margin: 0 0 20px;
+  line-height: 1.2;
+  color: white;
+}
+
+.notice-text {
+  color: #cde8ff;
+  line-height: 1.8;
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+.notice-btn {
+  border: none;
+  background: #2aa7ff;
+  color: white;
+  padding: 15px 28px;
+  border-radius: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.notice-btn:hover {
+  background: #1593ef;
+  transform: translateY(-2px);
+}
+
+/* ================= APP VISIBILITY ================= */
 
 .app-hidden {
   opacity: 0;
@@ -137,12 +298,37 @@ html {
   .preloader-name {
     font-size: 38px;
     letter-spacing: 2px;
-    padding: 0 20px;
   }
 
   .preloader-role {
     font-size: 11px;
     letter-spacing: 1px;
-    padding: 0 20px;
+  }
+
+  .progress-text {
+    font-size: 12px;
+  }
+
+   .notice-content {
+    padding: 40px 24px;
+    border-radius: 22px;
+  }
+
+  .notice-content h2 {
+    font-size: 28px;
+  }
+
+  .notice-text {
+    font-size: 14px;
+  }
+
+  .notice-icon {
+    width: 68px;
+    height: 68px;
+    font-size: 28px;
+  }
+
+  .notice-btn {
+    width: 100%;
   }
 }

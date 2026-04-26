@@ -1,9 +1,12 @@
 import "./About.css";
 import aboutProfile from "../assets/Profile.png";
 import aboutBg from "../assets/about-bg.png";
+import { ScrollReveal } from "./Utils/ScrollReveal";
+import { AnimatedTitle } from "./Utils/AnimatedTitle";
 
 export const About = () => {
   return (
+    <ScrollReveal>
     <section
       id="about"
       className="about"
@@ -12,7 +15,9 @@ export const About = () => {
       }}
     >
       {/* LEFT SIDE */}
+      <AnimatedTitle>
       <div className="about-left">
+
         <p className="about-label">ABOUT ME</p>
 
         <h2 className="about-title">
@@ -20,6 +25,7 @@ export const About = () => {
           <br />
           code and <span>creativity.</span>
         </h2>
+
 
         <p className="about-description">
           I’m <strong>Louie Roy F. Laura</strong>, a Software Engineer who
@@ -32,7 +38,9 @@ export const About = () => {
           onboarding systems, HR platforms, payroll systems, and internal
           business applications using React, Angular, Java, and Spring Boot.
         </p>
+        
       </div>
+              </AnimatedTitle>
 
       {/* RIGHT SIDE */}
       <div className="about-right">
@@ -50,5 +58,6 @@ export const About = () => {
         </div>
       </div>
     </section>
+    </ScrollReveal>
   );
 };

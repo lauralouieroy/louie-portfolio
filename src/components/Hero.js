@@ -11,6 +11,7 @@ import profile from "../assets/hero-icon.png";
 import heroBg from "../assets/hero-bg.png";
 import "./Hero.css";
 
+
 function useCounter(target, duration = 1000) {
   const [count, setCount] = useState(0);
 
@@ -46,8 +47,7 @@ export const Hero = ({ startAnimation }) => {
   const resumePath = `${process.env.PUBLIC_URL}/resume.pdf`;
   return (
     <>
-      <section
-      id="hero"
+  <section id="hero"
   className="hero"
   style={{
     backgroundImage: `url(${heroBg})`,
@@ -106,7 +106,7 @@ export const Hero = ({ startAnimation }) => {
               className="secondary-btn"
               onClick={() => setShowResume(true)}
             >
-              Download Resume
+              View Resume
             </button>
           </div>
 

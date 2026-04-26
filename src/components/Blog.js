@@ -11,6 +11,8 @@ import blog2 from "../assets/blog2.png";
 import blog3 from "../assets/blog3.png";
 import blog4 from "../assets/blog4.png";
 
+import { ScrollReveal } from "./Utils/ScrollReveal";
+
 export const Blog = () => {
   const blogs = [
     {
@@ -151,6 +153,7 @@ const visibleBlogs =  isMobile
 
   return (
     <>
+    <ScrollReveal>
       <section id="blog" className="blogs">
         <div className="blog-container">
 
@@ -212,6 +215,7 @@ const visibleBlogs =  isMobile
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* MODAL */}
       {selectedBlog && (

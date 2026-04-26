@@ -104,6 +104,34 @@
   margin-bottom: 24px;
 }
 
+/* ADD THIS BELOW .footer-connect p */
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #cde8ff;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.contact-item svg {
+  color: #2aa7ff;
+  font-size: 15px;
+  min-width: 15px;
+}
+
+.contact-item span {
+  word-break: break-word;
+}
+
 /* ================= BUTTON ================= */
 
 .footer-btn {
@@ -170,5 +198,9 @@
     flex-direction: column;
     gap: 18px;
     align-items: flex-start;
+  }
+  
+    .contact-item {
+    font-size: 14px;
   }
 }

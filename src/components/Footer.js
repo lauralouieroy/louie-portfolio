@@ -4,6 +4,9 @@ import {
   FaGithub,
   FaArrowUp,
   FaArrowRight,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 import "../components/Footer.css";
 
@@ -42,6 +45,7 @@ export const Footer = () => {
           <h4>Quick Links</h4>
 
           <a href="#about">About</a>
+          <a href="#experience">Experience</a>
           <a href="#technology">Technology</a>
           <a href="#projects">Projects</a>
           <a href="#blog">Blogs</a>
@@ -57,7 +61,24 @@ export const Footer = () => {
             Let’s build something great together.
           </p>
 
-          <a href="#footer" className="footer-btn">
+          <div className="contact-info">
+            <div className="contact-item">
+              <FaEnvelope />
+              <span>lauralouieroy@gmail.com</span>
+            </div>
+
+            <div className="contact-item">
+              <FaPhoneAlt />
+              <span>09569187196</span>
+            </div>
+
+            <div className="contact-item">
+              <FaMapMarkerAlt />
+              <span>GMA, Cavite</span>
+            </div>
+          </div>
+
+          <a href="mailto:lauralouieroy@gmail.com" className="footer-btn">
             Get In Touch <FaArrowRight />
           </a>
         </div>
