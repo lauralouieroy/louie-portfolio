@@ -18,7 +18,7 @@ export const ScrollReveal = ({
       }}
       viewport={{
         once: false,
-        amount: 0.25,
+        amount: 0.1,
       }}
       transition={{
         duration: 0.9,
