@@ -56,8 +56,8 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <header className="navbar-container">
-      <nav className="navbar">
+    <header className={`navbar-container ${ menuOpen ? "menu-open-container" : ""}`}>
+      <nav className={`navbar ${menuOpen ? "menu-open" : ""}`}>
         {/* LOGO */}
         <div className="logo-box">
           <div className="logo-text">
@@ -70,6 +70,13 @@ export const Navbar = () => {
 
         {/* DESKTOP NAV */}
         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+
+          <div className="mobile-menu-logo">
+            <div className="mobile-logo-box">
+              LL
+            </div>
+          </div>
+
           <li>
             <a
               href="#about"
