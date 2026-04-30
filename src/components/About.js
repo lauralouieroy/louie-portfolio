@@ -1,8 +1,8 @@
-import "./About.css";
-import aboutProfile from "../assets/Profile.png";
 import aboutBg from "../assets/about-bg.png";
-import { ScrollReveal } from "./Utils/ScrollReveal";
+import aboutProfile from "../assets/about-me-person.png";
+import "./About.css";
 import { AnimatedTitle } from "./Utils/AnimatedTitle";
+import { ScrollReveal } from "./Utils/ScrollReveal";
 
 export const About = () => {
   return (
@@ -38,7 +38,7 @@ export const About = () => {
           onboarding systems, HR platforms, payroll systems, and internal
           business applications using React, Angular, Java, and Spring Boot.
         </p>
-        
+
       </div>
               </AnimatedTitle>
 
