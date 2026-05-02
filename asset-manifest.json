@@ -1,9 +1,8 @@
 {
   "files": {
     "main.css": "/louie-portfolio/static/css/main.f52caa66.css",
-    "main.js": "/louie-portfolio/static/js/main.ab34045a.js",
+    "main.js": "/louie-portfolio/static/js/main.880f48e1.js",
     "static/js/453.3e16cc51.chunk.js": "/louie-portfolio/static/js/453.3e16cc51.chunk.js",
-    "static/media/img4.png": "/louie-portfolio/static/media/img4.f791a4af1e51da21bd6c.png",
     "static/media/blog3.png": "/louie-portfolio/static/media/blog3.3412350ccc72b826096b.png",
     "static/media/blog1.png": "/louie-portfolio/static/media/blog1.e98c09f2e9a3d51c8195.png",
     "static/media/blog4.png": "/louie-portfolio/static/media/blog4.37dd44b6f08b3771cd3a.png",
@@ -11,17 +10,18 @@
     "static/media/fintra-project.png": "/louie-portfolio/static/media/fintra-project.b1ed7117b08c0d79c8c5.png",
     "static/media/about-bg.png": "/louie-portfolio/static/media/about-bg.b0313576e6c50933b0ed.png",
     "static/media/toms-project.png": "/louie-portfolio/static/media/toms-project.9bccdc4b31ed5f064634.png",
+    "static/media/kairo-project.png": "/louie-portfolio/static/media/kairo-project.1c42263ef3884d121522.png",
     "static/media/stratosense-project.png": "/louie-portfolio/static/media/stratosense-project.18759d16f408ed696335.png",
     "static/media/hero-bg.png": "/louie-portfolio/static/media/hero-bg.2ced274cc24e5e0bd5bd.png",
     "static/media/hero-icon.png": "/louie-portfolio/static/media/hero-icon.e99c1d56aa7c9cddd924.png",
     "static/media/about-me-person.png": "/louie-portfolio/static/media/about-me-person.a1006ae3232c6ed97953.png",
     "index.html": "/louie-portfolio/index.html",
     "main.f52caa66.css.map": "/louie-portfolio/static/css/main.f52caa66.css.map",
-    "main.ab34045a.js.map": "/louie-portfolio/static/js/main.ab34045a.js.map",
+    "main.880f48e1.js.map": "/louie-portfolio/static/js/main.880f48e1.js.map",
     "453.3e16cc51.chunk.js.map": "/louie-portfolio/static/js/453.3e16cc51.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f52caa66.css",
-    "static/js/main.ab34045a.js"
+    "static/js/main.880f48e1.js"
   ]
 }
