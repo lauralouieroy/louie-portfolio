@@ -223,6 +223,31 @@
   background: #1593ef;
 }
 
+.modal-actions button {
+  border: none;
+  color: #fff;
+  background: #2aa7ff;
+  padding: 14px 22px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.modal-actions button:hover {
+  background: #1593ef;
+}
+
+.link-error {
+  margin-top: 18px;
+  color: #ff6b6b;
+  font-size: 14px;
+  text-align: center;
+  animation: fadeInUp 0.3s ease;
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 900px) {
   .projects {

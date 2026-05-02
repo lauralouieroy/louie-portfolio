@@ -8,9 +8,9 @@ import {
 } from "react-icons/fa";
 import "./Project.css";
 
-import img1 from "../assets/img1.png";
-import img2 from "../assets/img2.png";
-import img3 from "../assets/img3.png";
+import img1 from "../assets/toms-project.png";
+import img2 from "../assets/fintra-project.png";
+import img3 from "../assets/stratosense-project.png";
 import img4 from "../assets/img4.png";
 
 import { ScrollReveal } from "./Utils/ScrollReveal";
@@ -18,143 +18,155 @@ import { ScrollReveal } from "./Utils/ScrollReveal";
 export const Project = () => {
   const projects = [
     {
-      title: "Single Sign-On (SSO) Portal",
+      title: "Fintra – Financial Tracker",
       desc:
-        "Developed a centralized authentication system with admin dashboard, enabling secure access across multiple applications.",
-      tech: ["React", "Angular", "Java", "Spring Boot"],
-      img: img1,
-      github: "#",
-      demo: "#",
-      role: "Frontend + Backend Development",
-    },
-    {
-      title: "KYC Onboarding & Dashboard",
-      desc:
-        "Built onboarding and monitoring system for user verification and customer identity workflows.",
-      tech: ["Angular", "Java", "REST API"],
+        "A modern financial tracking web application that helps users manage credits, payments, and financial activities with real-time insights and clean dashboard analytics.",
+      tech: ["React", "JavaScript", "HTML", "CSS"],
       img: img2,
-      github: "#",
-      demo: "#",
-      role: "Frontend + API Integration",
+      github: "https://github.com/lauralouieroy/fintra",
+      demo: "https://lauralouieroy.github.io/fintra/",
+      role: "Frontend Development + UI/UX Design",
     },
     {
-      title: "HR, Payroll & Timekeeping System",
+      title: "StratoSense – Weather Intelligence App",
       desc:
-        "Contributed to employee management, payroll processing, and timekeeping systems.",
-      tech: ["Java", "Spring Boot", "MySQL"],
+        "A responsive weather application that provides real-time conditions, hourly forecasts, and location-based climate insights with a clean and intuitive UI.",
+      tech: ["React", "JavaScript", "HTML", "CSS", "API Integration"],
       img: img3,
-      github: "#",
-      demo: "#",
-      role: "Backend Development",
+      github: "https://github.com/lauralouieroy/stratosense",
+      demo: "https://lauralouieroy.github.io/stratosense/",
+      role: "Frontend Development + API Integration",
     },
     {
-      title: "Batch Processing Systems",
+      title: "TOMS – Transaction Operational Management System",
       desc:
-        "Worked on backend batch jobs for credit card and loan inquiry processing.",
-      tech: ["Java", "SQL"],
+        "A system designed for SK Barangay to manage purchase requests, purchase orders, and operational transactions efficiently with centralized monitoring and reporting.",
+      tech: ["PHP", "JavaScript", "CSS", "MySQL"],
+      img: img1,
+      github: "https://github.com/lauralouieroy/toms",
+      demo: "#",
+      role: "Fullstack Development",
+    },
+    {
+      title: "Batch Processing System (Financial)",
+      desc:
+        "Developed backend batch processing programs for credit card and loan workflows including data validation, encryption, and automated financial reporting.",
+      tech: ["Java", "SQL", "Batch Processing"],
       img: img4,
       github: "#",
       demo: "#",
-      role: "Backend Processing",
+      role: "Backend Development",
     },
   ];
 
   const [startIndex, setStartIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [linkError, setLinkError] = useState("");
 
   const nextSlide = () => {
     if (projects.length <= 3) return;
-
     setStartIndex((prev) => (prev + 1) % projects.length);
   };
 
   const prevSlide = () => {
     if (projects.length <= 3) return;
-
     setStartIndex((prev) =>
       prev === 0 ? projects.length - 1 : prev - 1
     );
   };
 
-const isMobile = window.innerWidth <= 900;
+  const handleLinkClick = (url, label) => {
+    if (!url || url === "#") {
+      setLinkError(`${label} is not available yet.`);
+      return;
+    }
 
-const visibleProjects = isMobile
-  ? [projects[startIndex]]
-  : projects.length <= 3
-  ? projects
-  : [
-      projects[startIndex],
-      projects[(startIndex + 1) % projects.length],
-      projects[(startIndex + 2) % projects.length],
-    ];
+    setLinkError("");
+    window.open(url, "_blank");
+  };
+
+  const isMobile = window.innerWidth <= 900;
+
+  const visibleProjects = isMobile
+    ? [projects[startIndex]]
+    : projects.length <= 3
+    ? projects
+    : [
+        projects[startIndex],
+        projects[(startIndex + 1) % projects.length],
+        projects[(startIndex + 2) % projects.length],
+      ];
 
   return (
     <>
-    <ScrollReveal>
-      <section id="projects" className="projects">
-        <div className="project-container">
-          {/* HEADER */}
-          <div className="project-header">
-            <div>
-              <p className="project-label">FEATURED PROJECTS</p>
+      <ScrollReveal>
+        <section id="projects" className="projects">
+          <div className="project-container">
+            {/* HEADER */}
+            <div className="project-header">
+              <div>
+                <p className="project-label">FEATURED PROJECTS</p>
 
-              <h1 className="section-title">
-                Some things <span>I’ve built</span>
-              </h1>
-            </div>
-
-            {/* ARROWS */}
-            <div className="carousel-controls">
-              <button
-                onClick={prevSlide}
-                disabled={projects.length <= 3}
-              >
-                <FaArrowLeft />
-              </button>
-
-              <button
-                onClick={nextSlide}
-                disabled={projects.length <= 3}
-              >
-                <FaArrowRight />
-              </button>
-            </div>
-          </div>
-
-          {/* PROJECT GRID */}
-          <div className="project-grid">
-            {visibleProjects.map((project, index) => (
-              <div
-                key={index}
-                className="project-card"
-                onClick={() => setSelectedProject(project)}
-              >
-                <img
-                  src={project.img}
-                  alt={project.title}
-                  className="project-image"
-                />
-
-                <div className="project-content">
-                  <h2>{project.title}</h2>
-
-                  <p>{project.desc}</p>
-
-                  <div className="tech-tags">
-                    {project.tech.map((tech, i) => (
-                      <span key={i}>{tech}</span>
-                    ))}
-                  </div>
-
-                  <button className="view-btn">
-                    View Details <FaExternalLinkAlt />
-                  </button>
-                </div>
+                <h1 className="section-title">
+                  Some things <span>I’ve built</span>
+                </h1>
               </div>
-            ))}
+
+              {/* ARROWS */}
+              <div className="carousel-controls">
+                <button
+                  onClick={prevSlide}
+                  disabled={projects.length <= 3}
+                >
+                  <FaArrowLeft />
+                </button>
+
+                <button
+                  onClick={nextSlide}
+                  disabled={projects.length <= 3}
+                >
+                  <FaArrowRight />
+                </button>
+              </div>
+            </div>
+
+            {/* PROJECT GRID */}
+            <div className="project-grid">
+              {visibleProjects.map((project, index) => (
+                <div
+                  key={index}
+                  className="project-card"
+                  onClick={() => {
+                    setSelectedProject(project);
+                    setLinkError(""); // reset error when opening
+                  }}
+                >
+                  <img
+                    src={project.img}
+                    alt={project.title}
+                    className="project-image"
+                  />
+
+                  <div className="project-content">
+                    <h2>{project.title}</h2>
+
+                    <p>{project.desc}</p>
+
+                    <div className="tech-tags">
+                      {project.tech.map((tech, i) => (
+                        <span key={i}>{tech}</span>
+                      ))}
+                    </div>
+
+                    <button className="view-btn">
+                      View Details <FaExternalLinkAlt />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       </ScrollReveal>
 
       {/* MODAL */}
@@ -188,14 +200,27 @@ const visibleProjects = isMobile
             </div>
 
             <div className="modal-actions">
-              <a href={selectedProject.github}>
+              <button
+                onClick={() =>
+                  handleLinkClick(selectedProject.github, "GitHub")
+                }
+              >
                 <FaGithub /> GitHub
-              </a>
+              </button>
 
-              <a href={selectedProject.demo}>
+              <button
+                onClick={() =>
+                  handleLinkClick(selectedProject.demo, "Live Demo")
+                }
+              >
                 <FaExternalLinkAlt /> Live Demo
-              </a>
+              </button>
             </div>
+
+            {/* ERROR MESSAGE */}
+            {linkError && (
+              <p className="link-error">{linkError}</p>
+            )}
           </div>
         </div>
       )}
