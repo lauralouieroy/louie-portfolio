@@ -7,11 +7,10 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import "./Project.css";
-
-import img1 from "../assets/toms-project.png";
-import img2 from "../assets/fintra-project.png";
-import img3 from "../assets/stratosense-project.png";
-import img4 from "../assets/img4.png";
+import project1 from "../assets/fintra-project.png";
+import project2 from "../assets/stratosense-project.png";
+import project3 from "../assets/kairo-project.png";
+import project4 from "../assets/toms-project.png";
 
 import { ScrollReveal } from "./Utils/ScrollReveal";
 
@@ -22,7 +21,7 @@ export const Project = () => {
       desc:
         "A modern financial tracking web application that helps users manage credits, payments, and financial activities with real-time insights and clean dashboard analytics.",
       tech: ["React", "JavaScript", "HTML", "CSS"],
-      img: img2,
+      img: project1,
       github: "https://github.com/lauralouieroy/fintra",
       demo: "https://lauralouieroy.github.io/fintra/",
       role: "Frontend Development + UI/UX Design",
@@ -32,30 +31,30 @@ export const Project = () => {
       desc:
         "A responsive weather application that provides real-time conditions, hourly forecasts, and location-based climate insights with a clean and intuitive UI.",
       tech: ["React", "JavaScript", "HTML", "CSS", "API Integration"],
-      img: img3,
+      img: project2,
       github: "https://github.com/lauralouieroy/stratosense",
       demo: "https://lauralouieroy.github.io/stratosense/",
       role: "Frontend Development + API Integration",
+    },
+    {
+      title: "Kairo – Focus & Productivity Timer",
+      desc:
+        "A minimalist Pomodoro-based productivity app designed to help users stay focused, manage work sessions, and build better habits through structured time tracking and clean UI experience.",
+      tech: ["React", "JavaScript", "CSS", "HTML"],
+      img: project3,
+      github: "https://github.com/lauralouieroy/kairo",
+      demo: "https://lauralouieroy.github.io/kairo/",
+      role: "Frontend Development & UI/UX Design",
     },
     {
       title: "TOMS – Transaction Operational Management System",
       desc:
         "A system designed for SK Barangay to manage purchase requests, purchase orders, and operational transactions efficiently with centralized monitoring and reporting.",
       tech: ["PHP", "JavaScript", "CSS", "MySQL"],
-      img: img1,
+      img: project4,
       github: "https://github.com/lauralouieroy/toms",
       demo: "#",
       role: "Fullstack Development",
-    },
-    {
-      title: "Batch Processing System (Financial)",
-      desc:
-        "Developed backend batch processing programs for credit card and loan workflows including data validation, encryption, and automated financial reporting.",
-      tech: ["Java", "SQL", "Batch Processing"],
-      img: img4,
-      github: "#",
-      demo: "#",
-      role: "Backend Development",
     },
   ];
 
