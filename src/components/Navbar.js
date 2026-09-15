@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  FaArrowUp,
   FaBars,
   FaFacebookF,
   FaGithub,
@@ -11,6 +12,7 @@ import "./Navbar.css";
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [scrolled, setScrolled] = useState(false);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -26,6 +28,8 @@ export const Navbar = () => {
     ];
 
     const handleScroll = () => {
+      setScrolled(window.scrollY > 60);
+
       let currentSection = "";
 
       sections.forEach((id) => {
@@ -34,7 +38,6 @@ export const Navbar = () => {
         if (section) {
           const rect = section.getBoundingClientRect();
 
-          /* active only when section is centered in viewport */
           if (
             rect.top <= window.innerHeight * 0.35 &&
             rect.bottom >= window.innerHeight * 0.35
@@ -47,45 +50,39 @@ export const Navbar = () => {
       setActiveSection(currentSection);
     };
 
-    window.addEventListener("scroll", handleScroll);
-
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header className={`navbar-container ${ menuOpen ? "menu-open-container" : ""}`}>
+    <header
+      className={`navbar-container ${scrolled ? "navbar-scrolled" : "navbar-top"} ${
+        menuOpen ? "menu-open-container" : ""
+      }`}
+    >
       <nav className={`navbar ${menuOpen ? "menu-open" : ""}`}>
-        {/* LOGO */}
         <div className="logo-box">
           <div className="logo-text">
             <span className="logo-initials">LL</span>
-            <span className="logo-name">
-              LOUIE LAURA
-            </span>
+            <div className="logo-copy">
+              <span className="logo-name">LOUIE ROY F. LAURA</span>
+              <span className="logo-tagline">Software Engineer</span>
+            </div>
           </div>
         </div>
 
-        {/* DESKTOP NAV */}
         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
-
           <div className="mobile-menu-logo">
-            <div className="mobile-logo-box">
-              LL
-            </div>
+            <div className="mobile-logo-box">LL</div>
           </div>
 
           <li>
             <a
               href="#about"
               onClick={closeMenu}
-              className={
-                activeSection === "about"
-                  ? "active-link"
-                  : ""
-              }
+              className={activeSection === "about" ? "active-link" : ""}
             >
               About
             </a>
@@ -95,11 +92,7 @@ export const Navbar = () => {
             <a
               href="#experience"
               onClick={closeMenu}
-              className={
-                activeSection === "experience"
-                  ? "active-link"
-                  : ""
-              }
+              className={activeSection === "experience" ? "active-link" : ""}
             >
               Experience
             </a>
@@ -109,11 +102,7 @@ export const Navbar = () => {
             <a
               href="#technology"
               onClick={closeMenu}
-              className={
-                activeSection === "technology"
-                  ? "active-link"
-                  : ""
-              }
+              className={activeSection === "technology" ? "active-link" : ""}
             >
               Technology
             </a>
@@ -123,11 +112,7 @@ export const Navbar = () => {
             <a
               href="#projects"
               onClick={closeMenu}
-              className={
-                activeSection === "projects"
-                  ? "active-link"
-                  : ""
-              }
+              className={activeSection === "projects" ? "active-link" : ""}
             >
               Projects
             </a>
@@ -137,44 +122,29 @@ export const Navbar = () => {
             <a
               href="#blog"
               onClick={closeMenu}
-              className={
-                activeSection === "blog"
-                  ? "active-link"
-                  : ""
-              }
+              className={activeSection === "blog" ? "active-link" : ""}
             >
               Blogs
             </a>
           </li>
 
-          {/* Mobile Socials */}
           <div className="mobile-social-icons">
-            <a href="#">
+            <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
               <FaFacebookF />
             </a>
-            <a href="#">
+            <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
               <FaLinkedin />
             </a>
-            <a href="#">
+            <a href="https://github.com" aria-label="GitHub" target="_blank" rel="noreferrer">
               <FaGithub />
             </a>
           </div>
         </ul>
 
-        {/* Desktop Socials */}
-        <div className="social-icons">
-          <a href="#">
-            <FaFacebookF />
-          </a>
-          <a href="#">
-            <FaLinkedin />
-          </a>
-          <a href="#">
-            <FaGithub />
-          </a>
-        </div>
+        <a href="#footer" className="nav-cta">
+          Let&apos;s Connect <FaArrowUp style={{ transform: "rotate(45deg)" }} />
+        </a>
 
-        {/* Mobile Toggle */}
         <div
           className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}

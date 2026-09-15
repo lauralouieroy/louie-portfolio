@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-import { About } from "./components/About";
 import { Blog } from "./components/Blog";
 import { Experience } from "./components/Experience";
 import { Footer } from "./components/Footer";
@@ -66,33 +65,42 @@ function App() {
     <>
       {/* PRELOADER */}
       {loading && (
-        <div className="preloader">
+        <div
+          className={`preloader${progress >= 100 ? " is-done" : ""}`}
+        >
+          <div className="preloader-ambient" aria-hidden="true">
+            <span className="preloader-orb preloader-orb-a" />
+            <span className="preloader-orb preloader-orb-b" />
+            <span className="preloader-orb preloader-orb-c" />
+          </div>
+
           <div className="preloader-content">
             <div className="preloader-logo">
               <span>LL</span>
             </div>
 
+            <p className="preloader-tag">
+              Code / Build / Solve / Impact
+            </p>
+
             <h1 className="preloader-name">
-              Louie Laura
+              Louie Roy F. Laura
             </h1>
 
             <p className="preloader-role">
               Software Engineer
             </p>
 
-            {/* Loading Percentage */}
             <div className="preloader-progress">
-              <div className="progress-bar">
+              <div className="progress-bar" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
                 <div
                   className="progress-fill"
-                  style={{
-                    width: `${progress}%`,
-                  }}
+                  style={{ width: `${progress}%` }}
                 />
               </div>
 
               <p className="progress-text">
-                Loading... {progress}%
+                Loading portfolio — {progress}%
               </p>
             </div>
           </div>
@@ -159,7 +167,6 @@ function App() {
 
         <Navbar />
         <Hero startAnimation={startHeroAnimation} />
-        <About />
         <Experience />
         <Technology />
         <Project />

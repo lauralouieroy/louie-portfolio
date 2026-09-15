@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -12,6 +12,25 @@ import blog3 from "../assets/blog3.png";
 import blog4 from "../assets/blog4.png";
 
 import { ScrollReveal } from "./Utils/ScrollReveal";
+
+function useVisibleCount() {
+  const getCount = () => {
+    if (typeof window === "undefined") return 3;
+    if (window.innerWidth <= 900) return 1;
+    if (window.innerWidth <= 1199) return 2;
+    return 3;
+  };
+
+  const [count, setCount] = useState(getCount);
+
+  useEffect(() => {
+    const onResize = () => setCount(getCount());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  return count;
+}
 
 export const Blog = () => {
   const blogs = [
@@ -124,100 +143,81 @@ For enterprise applications like SSO systems and onboarding dashboards, backend 
 
   const [startIndex, setStartIndex] = useState(0);
   const [selectedBlog, setSelectedBlog] = useState(null);
+  const visibleCount = useVisibleCount();
+  const canSlide = blogs.length > visibleCount;
 
   const nextSlide = () => {
-    if (blogs.length <= 3) return;
-
+    if (!canSlide) return;
     setStartIndex((prev) => (prev + 1) % blogs.length);
   };
 
   const prevSlide = () => {
-    if (blogs.length <= 3) return;
-
+    if (!canSlide) return;
     setStartIndex((prev) =>
       prev === 0 ? blogs.length - 1 : prev - 1
     );
   };
 
-  const isMobile = window.innerWidth <= 900;
-
-const visibleBlogs =  isMobile
-    ? [blogs[startIndex]]
-    : blogs.length <= 3
-    ? blogs
-    : [
-        blogs[startIndex],
-        blogs[(startIndex + 1) % blogs.length],
-        blogs[(startIndex + 2) % blogs.length],
-      ];
+  const visibleBlogs = Array.from({ length: visibleCount }, (_, i) => {
+    return blogs[(startIndex + i) % blogs.length];
+  });
 
   return (
     <>
-    <ScrollReveal>
-      <section id="blog" className="blogs">
-        <div className="blog-container">
+      <ScrollReveal>
+        <section id="blog" className="blogs">
+          <div className="blog-container">
+            <div className="blog-header">
+              <div>
+                <p className="blog-label">LATEST BLOGS</p>
 
-          {/* HEADER */}
-          <div className="blog-header">
-            <div>
-              <p className="blog-label">LATEST BLOGS</p>
+                <h1 className="section-title">
+                  Sharing <span>knowledge</span>
+                </h1>
+              </div>
 
-              <h1 className="section-title">
-                Sharing <span>knowledge</span>
-              </h1>
+              <div className="carousel-controls">
+                <button onClick={prevSlide} disabled={!canSlide}>
+                  <FaArrowLeft />
+                </button>
+
+                <button onClick={nextSlide} disabled={!canSlide}>
+                  <FaArrowRight />
+                </button>
+              </div>
             </div>
 
-            {/* ARROWS */}
-            <div className="carousel-controls">
-              <button
-                onClick={prevSlide}
-                disabled={blogs.length <= 3}
-              >
-                <FaArrowLeft />
-              </button>
+            <div className="blog-grid">
+              {visibleBlogs.map((blog, index) => (
+                <div
+                  key={`${blog.title}-${index}`}
+                  className="blog-card"
+                  onClick={() => setSelectedBlog(blog)}
+                >
+                  <img
+                    src={blog.img}
+                    alt={blog.title}
+                    className="blog-image"
+                  />
 
-              <button
-                onClick={nextSlide}
-                disabled={blogs.length <= 3}
-              >
-                <FaArrowRight />
-              </button>
-            </div>
-          </div>
+                  <div className="blog-content">
+                    <p className="blog-date">{blog.date}</p>
 
-          {/* BLOG GRID */}
-          <div className="blog-grid">
-            {visibleBlogs.map((blog, index) => (
-              <div
-                key={index}
-                className="blog-card"
-                onClick={() => setSelectedBlog(blog)}
-              >
-                <img
-                  src={blog.img}
-                  alt={blog.title}
-                  className="blog-image"
-                />
+                    <h2>{blog.title}</h2>
 
-                <div className="blog-content">
-                  <p className="blog-date">{blog.date}</p>
+                    <p>{blog.desc}</p>
 
-                  <h2>{blog.title}</h2>
-
-                  <p>{blog.desc}</p>
-
-                  <div className="blog-footer">
-                    <span>{blog.read}</span>
+                    <div className="blog-footer">
+                      <span>{blog.read}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       </ScrollReveal>
 
-      {/* MODAL */}
       {selectedBlog && (
         <div className="blog-modal">
           <div className="blog-modal-content">

@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { Typewriter } from "react-simple-typewriter";
 import {
   FaArrowRight,
-  FaBriefcase,
-  FaProjectDiagram,
-  FaPenNib,
-  FaAward,
+  FaCode,
+  FaFolderOpen,
+  FaUsers,
+  FaChartBar,
+  FaDownload,
 } from "react-icons/fa";
-import profile from "../assets/hero-icon.png";
-import heroBg from "../assets/hero-bg.png";
+import heroBg from "../assets/hero-workspace.jpg";
+import profile from "../assets/about-me-person.png";
 import "./Hero.css";
-
 
 function useCounter(target, duration = 1000) {
   const [count, setCount] = useState(0);
@@ -39,127 +38,101 @@ function useCounter(target, duration = 1000) {
 export const Hero = ({ startAnimation }) => {
   const [showResume, setShowResume] = useState(false);
 
+  const experience = useCounter(startAnimation ? 3 : 0, 1200);
   const projects = useCounter(startAnimation ? 12 : 0, 1000);
-  const certifications = useCounter(startAnimation ? 10 : 0, 1200);
-  const experience = useCounter(startAnimation ? 3 : 0, 1400);
-  const blogs = useCounter(startAnimation ? 5 : 0, 1000);
+  const technologies = useCounter(startAnimation ? 5 : 0, 1100);
+  const collaborations = useCounter(startAnimation ? 10 : 0, 1300);
 
   const resumePath = `${process.env.PUBLIC_URL}/resume.pdf`;
+
   return (
     <>
-  <section id="hero"
-  className="hero"
-  style={{
-    backgroundImage: `url(${heroBg})`,
-  }}
->
-        <div className="hero-left">
-          {/* TOP LABEL */}
-          <p className="hero-label">
-            SOFTWARE ENGINEER
-          </p>
+      <section
+        id="about"
+        className="hero"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        <div className="hero-fade" aria-hidden="true" />
 
-          {/* MAIN TITLE */}
-          <h1 className="hero-title">
-            Building digital
-            <br />
-            solutions that
-            <br />
-            make an <span>impact.</span>
-          </h1>
-
-          {/* TYPEWRITER REMAINS */}
-          <div className="hero-subtitle">
-            <span>I create </span>
-            <span className="typing">
-              <Typewriter
-                words={[
-                  "Scalable Systems",
-                  "Enterprise Applications",
-                  "Modern UI/UX",
-                  "Fullstack Solutions",
-                ]}
-                loop={true}
-                cursor
-                cursorStyle="|"
-                typeSpeed={80}
-                deleteSpeed={50}
-                delaySpeed={1500}
-              />
-            </span>
-          </div>
-
-          {/* DESCRIPTION */}
-          <p className="hero-description">
-            I’m <span>Louie Laura</span>, a passionate developer who loves
-            turning ideas into clean, efficient and intuitive solutions.
-          </p>
-
-          {/* BUTTONS */}
-          <div className="hero-actions">
-            {/* CHANGED TO CONTACT ME */}
-            <a href="#footer" className="primary-btn">
-              Contact Me
-            </a>
-
-            <button
-              className="secondary-btn"
-              onClick={() => setShowResume(true)}
-            >
-              View Resume
-            </button>
-          </div>
-
-          {/* STATS BELOW */}
-{/* STATS BELOW */}
-      <div className="stats">
-        <div className="stat-card">
-          <div className="stat-icon">
-            <FaBriefcase />
-          </div>
-          <h2>{experience}+</h2>
-          <p>Years Experience</p>
-        </div>
-
-        <div className="stat-card">
-          <div className="stat-icon">
-            <FaProjectDiagram />
-          </div>
-          <h2>{projects}+</h2>
-          <p>Projects Completed</p>
-        </div>
-
-        <div className="stat-card">
-          <div className="stat-icon">
-            <FaPenNib />
-          </div>
-          <h2>{blogs}+</h2>
-          <p>Blogs Published</p>
-        </div>
-
-        <div className="stat-card">
-          <div className="stat-icon">
-            <FaAward />
-          </div>
-          <h2>{certifications}+</h2>
-          <p>Certifications</p>
-        </div>
-      </div>
-        </div>
-
-        {/* RIGHT SIDE IMAGE */}
-        <div className="hero-right">
-          <div className="image-glow"></div>
-
+        <div className="hero-portrait">
           <img
             src={profile}
-            alt="Profile"
+            alt="Louie Roy F. Laura"
             className="profile-img"
+            width={1024}
+            height={1024}
+            decoding="async"
           />
+        </div>
+
+        <div className="hero-main">
+          <div className="hero-left">
+            <p className="hero-label">Code / Build / Solve / Impact</p>
+
+            <h1 className="hero-title">
+              Turning Ideas Into
+              <br />
+              <span>Real Solutions.</span>
+            </h1>
+
+            <p className="hero-description">
+              I&apos;m <span>Louie Roy F. Laura</span>, a Software Engineer who
+              enjoys building scalable web applications, solving real-world
+              problems, and creating technology that makes a meaningful impact.
+            </p>
+
+            <div className="hero-actions">
+              <a href="#projects" className="primary-btn">
+                View My Work <FaArrowRight />
+              </a>
+
+              <button
+                className="secondary-btn"
+                onClick={() => setShowResume(true)}
+              >
+                <FaDownload /> Download Resume
+              </button>
+            </div>
+          </div>
+
+          <div className="hero-right-spacer" aria-hidden="true" />
+        </div>
+
+        <div className="stats">
+          <div className="stat-card">
+            <div className="stat-icon">
+              <FaCode />
+            </div>
+            <h2>{experience}+</h2>
+            <p>Years of Experience</p>
+          </div>
+
+          <div className="stat-card">
+            <div className="stat-icon">
+              <FaFolderOpen />
+            </div>
+            <h2>{projects}+</h2>
+            <p>Projects Completed</p>
+          </div>
+
+          <div className="stat-card">
+            <div className="stat-icon">
+              <FaUsers />
+            </div>
+            <h2>{technologies}+</h2>
+            <p>Technologies</p>
+          </div>
+
+          <div className="stat-card">
+            <div className="stat-icon">
+              <FaChartBar />
+            </div>
+            <h2>{collaborations}+</h2>
+            <p>Happy Collaborations</p>
+          </div>
         </div>
       </section>
 
-      {/* RESUME MODAL */}
       {showResume && (
         <div className="resume-modal">
           <div className="resume-content">

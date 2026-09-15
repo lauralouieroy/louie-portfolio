@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -13,6 +13,25 @@ import project3 from "../assets/kairo-project.png";
 import project4 from "../assets/toms-project.png";
 
 import { ScrollReveal } from "./Utils/ScrollReveal";
+
+function useVisibleCount() {
+  const getCount = () => {
+    if (typeof window === "undefined") return 3;
+    if (window.innerWidth <= 900) return 1;
+    if (window.innerWidth <= 1199) return 2;
+    return 3;
+  };
+
+  const [count, setCount] = useState(getCount);
+
+  useEffect(() => {
+    const onResize = () => setCount(getCount());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  return count;
+}
 
 export const Project = () => {
   const projects = [
@@ -61,14 +80,16 @@ export const Project = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
   const [linkError, setLinkError] = useState("");
+  const visibleCount = useVisibleCount();
+  const canSlide = projects.length > visibleCount;
 
   const nextSlide = () => {
-    if (projects.length <= 3) return;
+    if (!canSlide) return;
     setStartIndex((prev) => (prev + 1) % projects.length);
   };
 
   const prevSlide = () => {
-    if (projects.length <= 3) return;
+    if (!canSlide) return;
     setStartIndex((prev) =>
       prev === 0 ? projects.length - 1 : prev - 1
     );
@@ -84,24 +105,15 @@ export const Project = () => {
     window.open(url, "_blank");
   };
 
-  const isMobile = window.innerWidth <= 900;
-
-  const visibleProjects = isMobile
-    ? [projects[startIndex]]
-    : projects.length <= 3
-    ? projects
-    : [
-        projects[startIndex],
-        projects[(startIndex + 1) % projects.length],
-        projects[(startIndex + 2) % projects.length],
-      ];
+  const visibleProjects = Array.from({ length: visibleCount }, (_, i) => {
+    return projects[(startIndex + i) % projects.length];
+  });
 
   return (
     <>
       <ScrollReveal>
         <section id="projects" className="projects">
           <div className="project-container">
-            {/* HEADER */}
             <div className="project-header">
               <div>
                 <p className="project-label">FEATURED PROJECTS</p>
@@ -111,33 +123,25 @@ export const Project = () => {
                 </h1>
               </div>
 
-              {/* ARROWS */}
               <div className="carousel-controls">
-                <button
-                  onClick={prevSlide}
-                  disabled={projects.length <= 3}
-                >
+                <button onClick={prevSlide} disabled={!canSlide}>
                   <FaArrowLeft />
                 </button>
 
-                <button
-                  onClick={nextSlide}
-                  disabled={projects.length <= 3}
-                >
+                <button onClick={nextSlide} disabled={!canSlide}>
                   <FaArrowRight />
                 </button>
               </div>
             </div>
 
-            {/* PROJECT GRID */}
             <div className="project-grid">
               {visibleProjects.map((project, index) => (
                 <div
-                  key={index}
+                  key={`${project.title}-${index}`}
                   className="project-card"
                   onClick={() => {
                     setSelectedProject(project);
-                    setLinkError(""); // reset error when opening
+                    setLinkError("");
                   }}
                 >
                   <img
@@ -158,7 +162,7 @@ export const Project = () => {
                     </div>
 
                     <button className="view-btn">
-                      View Details <FaExternalLinkAlt />
+                      View Project <FaArrowRight />
                     </button>
                   </div>
                 </div>
@@ -168,7 +172,6 @@ export const Project = () => {
         </section>
       </ScrollReveal>
 
-      {/* MODAL */}
       {selectedProject && (
         <div className="project-modal">
           <div className="project-modal-content">
@@ -216,10 +219,7 @@ export const Project = () => {
               </button>
             </div>
 
-            {/* ERROR MESSAGE */}
-            {linkError && (
-              <p className="link-error">{linkError}</p>
-            )}
+            {linkError && <p className="link-error">{linkError}</p>}
           </div>
         </div>
       )}

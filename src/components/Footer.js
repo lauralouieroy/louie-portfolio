@@ -22,19 +22,18 @@ export const Footer = () => {
           </div>
 
           <p>
-            Building digital solutions with
-            <br />
-            passion and purpose.
+            Let&apos;s build something meaningful —
+            digital solutions with passion and purpose.
           </p>
 
           <div className="footer-socials">
-            <a href="#">
+            <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
               <FaFacebookF />
             </a>
-            <a href="#">
+            <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
               <FaLinkedinIn />
             </a>
-            <a href="#">
+            <a href="https://github.com" aria-label="GitHub" target="_blank" rel="noreferrer">
               <FaGithub />
             </a>
           </div>
@@ -88,7 +87,7 @@ export const Footer = () => {
       <div className="footer-bottom">
         <p>© 2026 Louie Laura. All rights reserved.</p>
 
-        <a href="#hero" className="back-to-top">
+        <a href="#about" className="back-to-top">
           Back to top <FaArrowUp />
         </a>
       </div>

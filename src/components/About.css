@@ -1,36 +1,25 @@
 /* ================= ABOUT SECTION ================= */
 
 .about {
-  min-height: 100vh;
-  padding: 0px 50px;
+  min-height: auto;
+  padding: 100px 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 80px;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: var(--bg-muted);
   position: relative;
 }
 
-/* darker overlay */
 .about::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 10, 30, 0.45);
-  z-index: 1;
+  display: none;
 }
 
-/* content above overlay */
 .about-left,
 .about-right {
   position: relative;
   z-index: 2;
 }
-
-/* ================= LEFT ================= */
 
 .about-left {
   flex: 1;
@@ -38,36 +27,45 @@
 }
 
 .about-label {
-  font-size: 13px;
-  letter-spacing: 2px;
-  color: #2aa7ff;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  color: var(--accent);
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
 }
 
 .about-title {
-  font-size: 56px;
-  line-height: 1.2;
+  font-size: 48px;
+  line-height: 1.15;
   margin: 0;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -1px;
 }
 
 .about-title span {
-  color: #2aa7ff;
+  color: var(--navy);
 }
 
 .about-description {
-  margin-top: 24px;
-  font-size: 18px;
+  margin-top: 22px;
+  font-size: 17px;
   line-height: 1.8;
-  color: #d7ecff;
+  color: var(--text-muted);
 }
 
 .about-description strong {
-  color: #fff;
+  color: var(--navy);
 }
 
-/* ================= RIGHT ================= */
+.about-script {
+  margin-top: 28px;
+  font-family: var(--font-script);
+  font-size: 28px;
+  color: var(--navy-soft);
+  line-height: 1.3;
+}
 
 .about-right {
   flex: 1;
@@ -80,13 +78,14 @@
   position: relative;
   width: 420px;
   border-radius: 24px;
-  border: 1px solid rgba(42, 167, 255, 0.5);
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(50px);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  box-shadow: var(--shadow);
   display: flex;
   justify-content: center;
   align-items: flex-end;
   overflow: visible;
+  padding-top: 20px;
 }
 
 .about-img {
@@ -97,50 +96,38 @@
 
 .experience-card {
   position: absolute;
-  right: -40px;
-  bottom: -20px;
-  background: rgba(10, 20, 45, 0.9);
-  border: 1px solid rgba(42, 167, 255, 0.25);
-  border-radius: 18px;
-  padding: 24px;
-  min-width: 180px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  right: -28px;
+  bottom: 24px;
+  background: var(--navy);
+  border: none;
+  border-radius: 16px;
+  padding: 22px;
+  min-width: 160px;
+  box-shadow: var(--shadow);
 }
 
 .experience-card h3 {
   margin: 0;
-  font-size: 36px;
+  font-size: 32px;
   color: #fff;
 }
 
 .experience-card p {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #cde8ff;
-  line-height: 1.6;
+  margin-top: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
 }
-
-/* ================= MOBILE RESPONSIVE ================= */
 
 @media (max-width: 900px) {
   .about {
     min-height: auto;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
     padding: 90px 24px 70px;
     gap: 40px;
-    text-align: left;
-    overflow: hidden;
   }
 
-  /* stronger mobile overlay */
-  .about::before {
-    background: rgba(0, 10, 30, 0.72);
-  }
-
-  /* LEFT CONTENT */
   .about-left {
     width: 100%;
     max-width: 100%;
@@ -149,74 +136,58 @@
 
   .about-label {
     font-size: 11px;
-    letter-spacing: 1.5px;
     margin-bottom: 12px;
   }
 
   .about-title {
-    font-size: 38px;
-    line-height: 1.2;
+    font-size: 34px;
   }
 
   .about-description {
-    margin-top: 18px;
+    margin-top: 16px;
     font-size: 15px;
-    line-height: 1.8;
   }
 
-  /* RIGHT IMAGE */
+  .about-script {
+    font-size: 24px;
+  }
+
   .about-right {
     width: 100%;
     order: 2;
     justify-content: center;
   }
 
-about-image-box {
+  .about-image-box {
     width: 100%;
     max-width: 380px;
-
-    /* FIX: remove very tall fixed height */
     min-height: auto;
     height: auto;
-
     border-radius: 22px;
     margin-top: 10px;
     padding: 20px 0 0;
-    overflow: visible;
-
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
   }
 
   .about-img {
     width: 92%;
     max-width: 320px;
-    height: auto;
-    display: block;
-    object-fit: contain;
   }
 
   .experience-card {
-    position: absolute;
     right: 12px;
     bottom: 18px;
-    min-width: 150px;
-    padding: 18px;
-    border-radius: 16px;
+    min-width: 140px;
+    padding: 16px;
   }
 
   .experience-card h3 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .experience-card p {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 12px;
   }
 }
-
-/* ================= SMALL MOBILE ================= */
 
 @media (max-width: 480px) {
   .about {
@@ -224,38 +195,10 @@ about-image-box {
   }
 
   .about-title {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .about-description {
     font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .about-image-box {
-    max-width: 100%;
-    height: auto;
-    min-height: auto;
-    padding-top: 16px;
-  }
-
-  .about-img {
-    max-width: 280px;
-    height: auto;
-  }
-
-  .experience-card {
-    right: 8px;
-    bottom: 10px;
-    min-width: 130px;
-    padding: 14px;
-  }
-
-  .experience-card h3 {
-    font-size: 26px;
-  }
-
-  .experience-card p {
-    font-size: 12px;
   }
 }
