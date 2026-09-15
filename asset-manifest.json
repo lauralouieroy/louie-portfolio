@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/louie-portfolio/static/css/main.2ffac07a.css",
-    "main.js": "/louie-portfolio/static/js/main.7b326228.js",
+    "main.css": "/louie-portfolio/static/css/main.58500e74.css",
+    "main.js": "/louie-portfolio/static/js/main.f4baa632.js",
     "static/js/453.3e16cc51.chunk.js": "/louie-portfolio/static/js/453.3e16cc51.chunk.js",
     "static/media/blog3.png": "/louie-portfolio/static/media/blog3.3412350ccc72b826096b.png",
     "static/media/blog1.png": "/louie-portfolio/static/media/blog1.e98c09f2e9a3d51c8195.png",
@@ -11,15 +11,25 @@
     "static/media/toms-project.png": "/louie-portfolio/static/media/toms-project.9bccdc4b31ed5f064634.png",
     "static/media/kairo-project.png": "/louie-portfolio/static/media/kairo-project.1c42263ef3884d121522.png",
     "static/media/stratosense-project.png": "/louie-portfolio/static/media/stratosense-project.18759d16f408ed696335.png",
+    "static/media/frame-05.png": "/louie-portfolio/static/media/frame-05.daa3f59caedc301b33b0.png",
+    "static/media/frame-07.png": "/louie-portfolio/static/media/frame-07.d8fc1108c2a132a7c9d2.png",
+    "static/media/frame-08.png": "/louie-portfolio/static/media/frame-08.afe73e2b5f6fe9aa610b.png",
+    "static/media/frame-04.png": "/louie-portfolio/static/media/frame-04.77d8f12141549171bd93.png",
+    "static/media/frame-09.png": "/louie-portfolio/static/media/frame-09.19a3ea73948c5c45fd61.png",
+    "static/media/frame-06.png": "/louie-portfolio/static/media/frame-06.20bbb33f70c16174e6d1.png",
+    "static/media/frame-03.png": "/louie-portfolio/static/media/frame-03.4600e2603bd82f3281b1.png",
+    "static/media/frame-10.png": "/louie-portfolio/static/media/frame-10.a274e3f94cb0e373545e.png",
     "static/media/about-me-person.png": "/louie-portfolio/static/media/about-me-person.5477875439831e0e00c9.png",
+    "static/media/frame-02.png": "/louie-portfolio/static/media/frame-02.23799bfb74f09fd66f33.png",
+    "static/media/frame-01.png": "/louie-portfolio/static/media/frame-01.0602d6504aa2be593f2e.png",
     "static/media/hero-workspace.jpg": "/louie-portfolio/static/media/hero-workspace.53fb11480c6e8f72c568.jpg",
     "index.html": "/louie-portfolio/index.html",
-    "main.2ffac07a.css.map": "/louie-portfolio/static/css/main.2ffac07a.css.map",
-    "main.7b326228.js.map": "/louie-portfolio/static/js/main.7b326228.js.map",
+    "main.58500e74.css.map": "/louie-portfolio/static/css/main.58500e74.css.map",
+    "main.f4baa632.js.map": "/louie-portfolio/static/js/main.f4baa632.js.map",
     "453.3e16cc51.chunk.js.map": "/louie-portfolio/static/js/453.3e16cc51.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2ffac07a.css",
-    "static/js/main.7b326228.js"
+    "static/css/main.58500e74.css",
+    "static/js/main.f4baa632.js"
   ]
 }
