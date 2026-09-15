@@ -39,9 +39,9 @@ export const Hero = ({ startAnimation }) => {
   const [showResume, setShowResume] = useState(false);
 
   const experience = useCounter(startAnimation ? 3 : 0, 1200);
-  const projects = useCounter(startAnimation ? 12 : 0, 1000);
-  const technologies = useCounter(startAnimation ? 5 : 0, 1100);
-  const collaborations = useCounter(startAnimation ? 10 : 0, 1300);
+  const projects = useCounter(startAnimation ? 4 : 0, 1000);
+  const technologies = useCounter(startAnimation ? 24 : 0, 1100);
+  const collaborations = useCounter(startAnimation ? 2 : 0, 1300);
 
   const resumePath = `${process.env.PUBLIC_URL}/resume.pdf`;
 

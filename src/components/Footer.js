@@ -18,7 +18,7 @@ export const Footer = () => {
         <div className="footer-column footer-brand">
           <div className="footer-logo">
             <div className="logo-icon">LL</div>
-            <span>LOUIE LAURA</span>
+            <span>LOUIE ROY F. LAURA</span>
           </div>
 
           <p>
@@ -85,7 +85,7 @@ export const Footer = () => {
 
       {/* BOTTOM */}
       <div className="footer-bottom">
-        <p>© 2026 Louie Laura. All rights reserved.</p>
+        <p>© 2026 Louie Roy F. Laura. All rights reserved.</p>
 
         <a href="#about" className="back-to-top">
           Back to top <FaArrowUp />

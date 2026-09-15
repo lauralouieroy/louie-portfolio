@@ -46,7 +46,7 @@ export const Experience = () => {
 
     {
       year: "2023 - Present",
-      title: "Regular Programmer",
+      title: "Software Engineer",
       company: "SVI Software Service Corporation",
       period: "August 2023 – Present",
       icon: <FaBriefcase />,
