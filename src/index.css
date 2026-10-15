@@ -12,10 +12,18 @@
   --border: #e2e8f0;
   --shadow: 0 12px 40px rgba(26, 32, 44, 0.08);
   --shadow-sm: 0 6px 20px rgba(26, 32, 44, 0.06);
+  --on-navy: #ffffff;
+  --surface: #ffffff;
+  --surface-rgb: 255, 255, 255;
+  --bg-rgb: 255, 255, 255;
+  --overlay: rgba(26, 32, 44, 0.55);
+  --footer-bg: #1a202c;
   --radius: 16px;
   --radius-pill: 999px;
   --font: "Plus Jakarta Sans", sans-serif;
   --font-script: "Caveat", cursive;
+
+  color-scheme: light;
 
   /*
     Standard breakpoints (use these consistently in @media):
@@ -28,6 +36,31 @@
   */
 }
 
+/* Dark theme: --navy flips to a light ink so headings and navy buttons invert. */
+[data-theme="dark"] {
+  --navy: #e8eef8;
+  --navy-soft: #c3cfe2;
+  --bg: #0b1220;
+  --bg-muted: #111a2b;
+  --bg-soft: #1a2538;
+  --text: #e8eef8;
+  --text-muted: #a3b1c6;
+  --text-soft: #7f8da3;
+  --accent: #7eaaea;
+  --accent-soft: #1b2b45;
+  --border: #233149;
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  --shadow-sm: 0 6px 20px rgba(0, 0, 0, 0.35);
+  --on-navy: #0b1220;
+  --surface: #121c2e;
+  --surface-rgb: 18, 28, 46;
+  --bg-rgb: 11, 18, 32;
+  --overlay: rgba(3, 6, 12, 0.72);
+  --footer-bg: #060a12;
+
+  color-scheme: dark;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
@@ -38,6 +71,9 @@ body {
   font-family: var(--font);
   color: var(--text);
   background: var(--bg);
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

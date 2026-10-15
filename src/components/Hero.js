@@ -1,4 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 import {
   FaArrowRight,
   FaCode,
@@ -7,9 +14,11 @@ import {
   FaChartBar,
   FaDownload,
 } from "react-icons/fa";
-import heroBg from "../assets/hero-workspace.jpg";
-import profile from "../assets/about-me-person.png";
+import { HeroScene } from "./HeroScene";
+import profile from "../assets/hero-avatar.jpg";
 import "./Hero.css";
+
+const ENTRANCE_EASE = [0.22, 1, 0.36, 1];
 
 function useCounter(target, duration = 1000) {
   const [count, setCount] = useState(0);
@@ -45,43 +54,104 @@ export const Hero = ({ startAnimation }) => {
 
   const resumePath = `${process.env.PUBLIC_URL}/resume.pdf`;
 
+  const heroRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const entrance = startAnimation ? "show" : "hidden";
+  const rise = (delay, scale = 1) => ({
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 18, scale: reduceMotion ? 1 : scale },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: reduceMotion ? 0.3 : 0.7, delay, ease: ENTRANCE_EASE },
+    },
+  });
+
+  const stats = [
+    { icon: <FaCode />, value: experience, label: "Years of Experience" },
+    { icon: <FaFolderOpen />, value: projects, label: "Projects Completed" },
+    { icon: <FaUsers />, value: technologies, label: "Technologies" },
+    { icon: <FaChartBar />, value: collaborations, label: "Happy Collaborations" },
+  ];
+
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springConfig = { stiffness: 50, damping: 16, mass: 0.6 };
+  const mouseX = useSpring(pointerX, springConfig);
+  const mouseY = useSpring(pointerY, springConfig);
+
+  const handlePointerMove = (e) => {
+    if (reduceMotion || e.pointerType !== "mouse") return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    pointerX.set((e.clientX - rect.left) / rect.width - 0.5);
+    pointerY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handlePointerLeave = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
+
   return (
     <>
       <section
         id="about"
         className="hero"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        ref={heroRef}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
       >
-        <div className="hero-fade" aria-hidden="true" />
+        <HeroScene
+          progress={scrollYProgress}
+          mouseX={mouseX}
+          mouseY={mouseY}
+          reduceMotion={reduceMotion}
+        />
 
-        <div className="hero-portrait">
-          <img
-            src={profile}
-            alt="Louie Roy F. Laura"
-            className="profile-img"
-            width={1024}
-            height={1024}
-            decoding="async"
-          />
-        </div>
+        <div className="hero-fade" aria-hidden="true" />
 
         <div className="hero-main">
           <div className="hero-left">
-            <p className="hero-label">Code / Build / Solve / Impact</p>
+            <motion.div
+              className="hero-avatar"
+              initial="hidden"
+              animate={entrance}
+              variants={rise(0, 0.94)}
+            >
+              <span className="hero-avatar-orbit" aria-hidden="true" />
+              <div className="hero-avatar-frame">
+                <img
+                  src={profile}
+                  alt="Louie Roy F. Laura"
+                  width={960}
+                  height={960}
+                  decoding="async"
+                />
+              </div>
+            </motion.div>
 
-            <h1 className="hero-title">
-              Turning Ideas Into
-              <br />
-              <span>Real Solutions.</span>
-            </h1>
-
-            <p className="hero-description">
+            <motion.p
+              className="hero-description"
+              initial="hidden"
+              animate={entrance}
+              variants={rise(0.12)}
+            >
               I&apos;m <span>Louie Roy F. Laura</span>, a Software Engineer who
               enjoys building scalable web applications, solving real-world
               problems, and creating technology that makes a meaningful impact.
-            </p>
+            </motion.p>
 
-            <div className="hero-actions">
+            <motion.div
+              className="hero-actions"
+              initial="hidden"
+              animate={entrance}
+              variants={rise(0.24)}
+            >
               <a href="#projects" className="primary-btn">
                 View My Work <FaArrowRight />
               </a>
@@ -92,44 +162,25 @@ export const Hero = ({ startAnimation }) => {
               >
                 <FaDownload /> Download Resume
               </button>
-            </div>
+            </motion.div>
           </div>
-
-          <div className="hero-right-spacer" aria-hidden="true" />
         </div>
 
         <div className="stats">
-          <div className="stat-card">
-            <div className="stat-icon">
-              <FaCode />
-            </div>
-            <h2>{experience}+</h2>
-            <p>Years of Experience</p>
-          </div>
-
-          <div className="stat-card">
-            <div className="stat-icon">
-              <FaFolderOpen />
-            </div>
-            <h2>{projects}+</h2>
-            <p>Projects Completed</p>
-          </div>
-
-          <div className="stat-card">
-            <div className="stat-icon">
-              <FaUsers />
-            </div>
-            <h2>{technologies}+</h2>
-            <p>Technologies</p>
-          </div>
-
-          <div className="stat-card">
-            <div className="stat-icon">
-              <FaChartBar />
-            </div>
-            <h2>{collaborations}+</h2>
-            <p>Happy Collaborations</p>
-          </div>
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              className="stat-card"
+              initial="hidden"
+              animate={entrance}
+              variants={rise(0.36 + i * 0.08)}
+              whileHover={reduceMotion ? undefined : { y: -3 }}
+            >
+              <div className="stat-icon">{stat.icon}</div>
+              <h2>{stat.value}+</h2>
+              <p>{stat.label}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 

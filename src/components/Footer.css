@@ -1,5 +1,5 @@
 .footer {
-  background: var(--navy);
+  background: var(--footer-bg);
   color: #fff;
   padding: 80px 80px 30px;
 }
@@ -80,7 +80,7 @@
 
 .footer-brand .footer-socials a:hover {
   background: #fff;
-  color: var(--navy);
+  color: #1a202c;
   border-color: #fff;
   transform: translateY(-2px);
 }
@@ -140,7 +140,7 @@
   align-items: center;
   gap: 10px;
   background: #fff;
-  color: var(--navy) !important;
+  color: #1a202c !important;
   padding: 14px 22px;
   border-radius: var(--radius-pill);
   font-weight: 600;

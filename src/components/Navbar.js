@@ -5,11 +5,16 @@ import {
   FaFacebookF,
   FaGithub,
   FaLinkedin,
+  FaMoon,
+  FaSun,
   FaTimes,
 } from "react-icons/fa";
+import { useTheme } from "../theme";
 import "./Navbar.css";
 
 export const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [scrolled, setScrolled] = useState(false);
@@ -141,15 +146,28 @@ export const Navbar = () => {
           </div>
         </ul>
 
-        <a href="#footer" className="nav-cta">
-          Let&apos;s Connect <FaArrowUp style={{ transform: "rotate(45deg)" }} />
-        </a>
+        <div className="nav-actions">
+          <button
+            type="button"
+            className={`theme-toggle ${isDark ? "is-dark" : "is-light"}`}
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            <FaSun className="theme-toggle-icon theme-toggle-sun" aria-hidden="true" />
+            <FaMoon className="theme-toggle-icon theme-toggle-moon" aria-hidden="true" />
+          </button>
 
-        <div
-          className="menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <FaTimes /> : <FaBars />}
+          <a href="#footer" className="nav-cta">
+            Let&apos;s Connect <FaArrowUp style={{ transform: "rotate(45deg)" }} />
+          </a>
+
+          <div
+            className="menu-toggle"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </div>
         </div>
       </nav>
     </header>

@@ -18,6 +18,19 @@
       rel="stylesheet"
     />
     <title>Louie Portfolio</title>
+    <script>
+      /* Set the theme before first paint (AM light, PM dark, unless overridden). Mirrors src/theme.js. */
+      (function () {
+        var theme = new Date().getHours() < 12 ? "light" : "dark";
+        try {
+          var saved = JSON.parse(localStorage.getItem("theme-override"));
+          if (saved && saved.until > Date.now() && (saved.theme === "light" || saved.theme === "dark")) {
+            theme = saved.theme;
+          }
+        } catch (e) {}
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

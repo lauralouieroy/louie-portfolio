@@ -66,7 +66,7 @@
 
 .carousel-controls button:hover:not(:disabled) {
   background: var(--navy);
-  color: #fff;
+  color: var(--on-navy);
   border-color: var(--navy);
   transform: translateY(-2px);
 }
@@ -176,7 +176,7 @@
 .project-modal {
   position: fixed;
   inset: 0;
-  background: rgba(26, 32, 44, 0.55);
+  background: var(--overlay);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -246,7 +246,7 @@
 .modal-actions a,
 .modal-actions button {
   text-decoration: none;
-  color: #fff;
+  color: var(--on-navy);
   background: var(--navy);
   border: none;
   padding: 13px 20px;

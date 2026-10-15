@@ -1,16 +1,26 @@
 // Experience.jsx
 
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import "./Experience.css";
 import {
   FaCode,
   FaBuilding,
   FaBriefcase,
 } from "react-icons/fa";
-import { ScrollReveal } from "./Utils/ScrollReveal";
+
+const REVEAL_EASE = [0.22, 1, 0.36, 1];
 
 export const Experience = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+
+  const reveal = (delay = 0, amount = 0.4) => ({
+    initial: { opacity: 0, y: reduceMotion ? 0 : 24 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount },
+    transition: { duration: reduceMotion ? 0.3 : 0.7, delay, ease: REVEAL_EASE },
+  });
 
   const experiences = [
     {
@@ -88,18 +98,40 @@ export const Experience = () => {
   }, []);
 
   return (
-    <ScrollReveal>
     <section id="experience" className="experience">
+      <svg className="experience-connector" viewBox="0 0 24 80" aria-hidden="true">
+        <motion.path
+          d="M12 0 C12 22 6 30 12 52 L12 62"
+          initial={{ pathLength: reduceMotion ? 1 : 0, opacity: 0 }}
+          whileInView={{ pathLength: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 1 }}
+          transition={{ duration: reduceMotion ? 0.3 : 0.9, ease: REVEAL_EASE }}
+        />
+        <g transform="rotate(45 12 68)">
+          <motion.rect
+            x="9"
+            y="65"
+            width="6"
+            height="6"
+            rx="1"
+            initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.4 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 1 }}
+            transition={{ duration: 0.4, delay: reduceMotion ? 0 : 0.7, ease: REVEAL_EASE }}
+          />
+        </g>
+      </svg>
+
       <div className="experience-container">
-        <div className="experience-header">
+        <motion.div className="experience-header" {...reveal()}>
           <p className="experience-label">EXPERIENCE</p>
 
           <h2 className="experience-title">
             My Career <span>Journey</span>
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="timeline">
+        <motion.div className="timeline" {...reveal(0.1, 0.05)}>
           {experiences.map((item, index) => (
             <div
               key={index}
@@ -133,9 +165,8 @@ export const Experience = () => {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
-    </ScrollReveal>
   );
 };

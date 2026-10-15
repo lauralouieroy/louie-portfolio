@@ -10,8 +10,6 @@ import { Hero } from "./components/Hero";
 import { Navbar } from "./components/Navbar";
 import { Project } from "./components/Project";
 import { Technology } from "./components/Technology";
-import { RobotBuddy } from "./components/RobotBuddy";
-
 import { motion, useScroll } from "framer-motion";
 import {
   FaExclamationTriangle,
@@ -173,7 +171,6 @@ function App() {
         <Project />
         <Blog />
         <Footer />
-        <RobotBuddy ready={!loading} />
       </div>
     </>
   );

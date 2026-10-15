@@ -84,6 +84,31 @@
   --tone: #7c3aed;
 }
 
+[data-theme="dark"] .tech-category--rose {
+  background: #2a1820;
+  --tone: #fb7185;
+}
+
+[data-theme="dark"] .tech-category--sky {
+  background: #15233a;
+  --tone: #60a5fa;
+}
+
+[data-theme="dark"] .tech-category--mint {
+  background: #10261f;
+  --tone: #34d399;
+}
+
+[data-theme="dark"] .tech-category--amber {
+  background: #2b1d12;
+  --tone: #fb923c;
+}
+
+[data-theme="dark"] .tech-category--violet {
+  background: #1f1a33;
+  --tone: #a78bfa;
+}
+
 .tech-category-top {
   display: flex;
   justify-content: space-between;
@@ -100,7 +125,7 @@
   justify-content: center;
   color: var(--tone);
   font-size: 20px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(var(--surface-rgb), 0.7);
 }
 
 .tech-category-index {
@@ -135,7 +160,7 @@
 }
 
 .tech-tool {
-  background: #fff;
+  background: var(--surface);
   border-radius: 14px;
   padding: 14px 10px;
   display: flex;
@@ -198,7 +223,7 @@
 .tech-modal {
   position: fixed;
   inset: 0;
-  background: rgba(26, 32, 44, 0.55);
+  background: var(--overlay);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -225,7 +250,7 @@
   height: 40px;
   border: none;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(var(--surface-rgb), 0.85);
   color: var(--navy);
   cursor: pointer;
   display: inline-flex;
@@ -235,7 +260,7 @@
 }
 
 .tech-modal-close:hover {
-  background: #fff;
+  background: var(--surface);
   transform: translateY(-1px);
 }
 

@@ -47,6 +47,13 @@ html {
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
+[data-theme="dark"] .preloader {
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 20%, rgba(126, 170, 234, 0.14), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 88% 78%, rgba(126, 170, 234, 0.1), transparent 50%),
+    linear-gradient(165deg, #0b1220 0%, #0e1727 48%, #111c2f 100%);
+}
+
 .preloader.is-done {
   opacity: 0;
   transform: translateY(-12px);
@@ -123,7 +130,7 @@ html {
   font-size: 26px;
   font-weight: 800;
   letter-spacing: 0.5px;
-  color: #fff;
+  color: var(--on-navy);
 }
 
 .preloader-tag {
@@ -190,7 +197,7 @@ html {
 .notice-modal {
   position: fixed;
   inset: 0;
-  background: rgba(26, 32, 44, 0.55);
+  background: var(--overlay);
   backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
@@ -272,7 +279,7 @@ html {
 .notice-btn {
   border: none;
   background: var(--navy);
-  color: white;
+  color: var(--on-navy);
   padding: 15px 28px;
   border-radius: var(--radius-pill);
   font-weight: 600;

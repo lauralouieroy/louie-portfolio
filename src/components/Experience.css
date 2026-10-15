@@ -13,6 +13,32 @@
   margin: 0 auto;
 }
 
+/* Thin accent leading from the hero skyline down to the section label. */
+.experience-connector {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  width: 24px;
+  height: 80px;
+  translate: -50% 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.experience-connector path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-opacity: 0.6;
+}
+
+.experience-connector rect {
+  fill: var(--accent);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
 .experience-header {
   text-align: center;
   margin-bottom: 90px;
@@ -152,7 +178,7 @@
 .timeline-item.active .timeline-icon {
   background: var(--navy);
   border-color: var(--navy);
-  color: #fff;
+  color: var(--on-navy);
   box-shadow: var(--shadow);
   transform: scale(1.06);
 }
@@ -168,13 +194,18 @@
 .timeline-item:hover .timeline-icon {
   background: var(--navy);
   border-color: var(--navy);
-  color: #fff;
+  color: var(--on-navy);
   transform: scale(1.06);
 }
 
 @media (max-width: 900px) {
   .experience {
     padding: 90px 18px;
+  }
+
+  .experience-connector {
+    top: 10px;
+    height: 64px;
   }
 
   .experience-title {
