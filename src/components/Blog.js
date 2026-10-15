@@ -4,12 +4,9 @@ import {
   FaArrowRight,
   FaTimes,
 } from "react-icons/fa";
+import { SiAngular, SiJavascript, SiReact, SiSpringboot } from "react-icons/si";
 import "./Blog.css";
-
-import blog1 from "../assets/blog1.png";
-import blog2 from "../assets/blog2.png";
-import blog3 from "../assets/blog3.png";
-import blog4 from "../assets/blog4.png";
+import { MediaTile } from "./MediaTile";
 
 import { ScrollReveal } from "./Utils/ScrollReveal";
 
@@ -40,7 +37,8 @@ export const Blog = () => {
         "A deep dive into React Server Components and how they improve rendering performance and scalability for modern enterprise applications.",
       read: "5 min read",
       date: "May 20, 2024",
-      img: blog1,
+      icon: SiReact,
+      tone: "#149eca",
       category: "React",
 
       content: `
@@ -67,7 +65,8 @@ My approach usually involves combining Server Components with proper API archite
         "Useful JavaScript tips that can improve your daily coding workflow and help write cleaner code.",
       read: "4 min read",
       date: "May 10, 2024",
-      img: blog2,
+      icon: SiJavascript,
+      tone: "#e0b400",
       category: "JavaScript",
 
       content: `
@@ -93,7 +92,8 @@ In enterprise projects, writing clean JavaScript matters because multiple develo
         "My personal approach to structuring scalable React applications for enterprise-level development.",
       read: "6 min read",
       date: "Apr 28, 2024",
-      img: blog3,
+      icon: SiAngular,
+      tone: "#dd0031",
       category: "Frontend",
 
       content: `
@@ -121,7 +121,8 @@ For enterprise systems, I also prioritize reusable UI components, centralized AP
         "Practical techniques for improving backend performance and optimizing API response times.",
       read: "7 min read",
       date: "Apr 15, 2024",
-      img: blog4,
+      icon: SiSpringboot,
+      tone: "#6db33f",
       category: "Backend",
 
       content: `
@@ -194,11 +195,9 @@ For enterprise applications like SSO systems and onboarding dashboards, backend 
                   className="blog-card"
                   onClick={() => setSelectedBlog(blog)}
                 >
-                  <img
-                    src={blog.img}
-                    alt={blog.title}
-                    className="blog-image"
-                  />
+                  <MediaTile tone={blog.tone} label={blog.category} className="blog-image">
+                    <blog.icon />
+                  </MediaTile>
 
                   <div className="blog-content">
                     <p className="blog-date">{blog.date}</p>
@@ -228,11 +227,13 @@ For enterprise applications like SSO systems and onboarding dashboards, backend 
               <FaTimes />
             </button>
 
-            <img
-              src={selectedBlog.img}
-              alt={selectedBlog.title}
-              className="modal-image"
-            />
+            <MediaTile
+              tone={selectedBlog.tone}
+              label={selectedBlog.category}
+              className="modal-image media-tile--large"
+            >
+              <selectedBlog.icon />
+            </MediaTile>
 
             <h2>{selectedBlog.title}</h2>
 

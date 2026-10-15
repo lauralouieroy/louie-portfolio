@@ -7,10 +7,11 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import "./Project.css";
-import project1 from "../assets/fintra-project.png";
-import project2 from "../assets/stratosense-project.png";
-import project3 from "../assets/kairo-project.png";
-import project4 from "../assets/toms-project.png";
+import fintraLogo from "../assets/project-logos/fintra.webp";
+import stratosenseLogo from "../assets/project-logos/stratosense.webp";
+import kairoLogo from "../assets/project-logos/kairo.webp";
+import tomsLogo from "../assets/project-logos/toms.webp";
+import { MediaTile } from "./MediaTile";
 
 import { ScrollReveal } from "./Utils/ScrollReveal";
 
@@ -40,7 +41,8 @@ export const Project = () => {
       desc:
         "A modern financial tracking web application that helps users manage credits, payments, and financial activities with real-time insights and clean dashboard analytics.",
       tech: ["React", "JavaScript", "HTML", "CSS"],
-      img: project1,
+      logo: fintraLogo,
+      tone: "#1fa58a",
       github: "https://github.com/lauralouieroy/fintra",
       demo: "https://lauralouieroy.github.io/fintra/",
       role: "Frontend Development + UI/UX Design",
@@ -50,7 +52,8 @@ export const Project = () => {
       desc:
         "A responsive weather application that provides real-time conditions, hourly forecasts, and location-based climate insights with a clean and intuitive UI.",
       tech: ["React", "JavaScript", "HTML", "CSS", "API Integration"],
-      img: project2,
+      logo: stratosenseLogo,
+      tone: "#5b7cfa",
       github: "https://github.com/lauralouieroy/stratosense",
       demo: "https://lauralouieroy.github.io/stratosense/",
       role: "Frontend Development + API Integration",
@@ -60,7 +63,8 @@ export const Project = () => {
       desc:
         "A minimalist Pomodoro-based productivity app designed to help users stay focused, manage work sessions, and build better habits through structured time tracking and clean UI experience.",
       tech: ["React", "JavaScript", "CSS", "HTML"],
-      img: project3,
+      logo: kairoLogo,
+      tone: "#ff6a3d",
       github: "https://github.com/lauralouieroy/kairo",
       demo: "https://lauralouieroy.github.io/kairo/",
       role: "Frontend Development & UI/UX Design",
@@ -70,7 +74,8 @@ export const Project = () => {
       desc:
         "A system designed for SK Barangay to manage purchase requests, purchase orders, and operational transactions efficiently with centralized monitoring and reporting.",
       tech: ["PHP", "JavaScript", "CSS", "MySQL"],
-      img: project4,
+      logo: tomsLogo,
+      tone: "#2e7d32",
       github: "https://github.com/lauralouieroy/toms",
       demo: "#",
       role: "Fullstack Development",
@@ -144,11 +149,9 @@ export const Project = () => {
                     setLinkError("");
                   }}
                 >
-                  <img
-                    src={project.img}
-                    alt={project.title}
-                    className="project-image"
-                  />
+                  <MediaTile tone={project.tone} className="project-image">
+                    <img src={project.logo} alt="" draggable="false" />
+                  </MediaTile>
 
                   <div className="project-content">
                     <h2>{project.title}</h2>
@@ -182,11 +185,9 @@ export const Project = () => {
               <FaTimes />
             </button>
 
-            <img
-              src={selectedProject.img}
-              alt={selectedProject.title}
-              className="modal-image"
-            />
+            <MediaTile tone={selectedProject.tone} className="modal-image media-tile--large">
+              <img src={selectedProject.logo} alt="" draggable="false" />
+            </MediaTile>
 
             <h2>{selectedProject.title}</h2>
 
