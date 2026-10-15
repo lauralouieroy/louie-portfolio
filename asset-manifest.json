@@ -1,31 +1,27 @@
 {
   "files": {
-    "main.css": "/louie-portfolio/static/css/main.2f3d1844.css",
-    "main.js": "/louie-portfolio/static/js/main.5698a3f1.js",
+    "main.css": "/louie-portfolio/static/css/main.6a1a8a74.css",
+    "main.js": "/louie-portfolio/static/js/main.2a6e3ccb.js",
     "static/js/453.3e16cc51.chunk.js": "/louie-portfolio/static/js/453.3e16cc51.chunk.js",
-    "static/media/blog3.png": "/louie-portfolio/static/media/blog3.3412350ccc72b826096b.png",
-    "static/media/blog1.png": "/louie-portfolio/static/media/blog1.e98c09f2e9a3d51c8195.png",
-    "static/media/blog4.png": "/louie-portfolio/static/media/blog4.37dd44b6f08b3771cd3a.png",
-    "static/media/blog2.png": "/louie-portfolio/static/media/blog2.cf87f4f394e43802c380.png",
-    "static/media/fintra-project.png": "/louie-portfolio/static/media/fintra-project.b1ed7117b08c0d79c8c5.png",
-    "static/media/toms-project.png": "/louie-portfolio/static/media/toms-project.9bccdc4b31ed5f064634.png",
-    "static/media/kairo-project.png": "/louie-portfolio/static/media/kairo-project.1c42263ef3884d121522.png",
-    "static/media/stratosense-project.png": "/louie-portfolio/static/media/stratosense-project.18759d16f408ed696335.png",
     "static/media/hero-avatar.jpg": "/louie-portfolio/static/media/hero-avatar.2db71ee187a25f6f35f9.jpg",
     "static/media/orange-tri.webp": "/louie-portfolio/static/media/orange-tri.19e9b05da841a995c58d.webp",
     "static/media/green-arch.webp": "/louie-portfolio/static/media/green-arch.31c20fd43d21f2e33d43.webp",
+    "static/media/fintra.webp": "/louie-portfolio/static/media/fintra.51e57e1f608e7b55b752.webp",
     "static/media/pink-arch.webp": "/louie-portfolio/static/media/pink-arch.3579d9b25c6c5ce5c8eb.webp",
     "static/media/blue-cluster.webp": "/louie-portfolio/static/media/blue-cluster.2e4ea721d5f8c0c115bd.webp",
+    "static/media/toms.webp": "/louie-portfolio/static/media/toms.6e2586b367838b4c5e59.webp",
     "static/media/tile-braces.webp": "/louie-portfolio/static/media/tile-braces.db4d3b9a431e1c74a0a5.webp",
+    "static/media/kairo.webp": "/louie-portfolio/static/media/kairo.7d85598f717abd850ab5.webp",
     "static/media/tile-code.webp": "/louie-portfolio/static/media/tile-code.bbc01e58aea3f0e9554d.webp",
+    "static/media/stratosense.webp": "/louie-portfolio/static/media/stratosense.57a25c5edbffe8393aee.webp",
     "static/media/cube-yellow.webp": "/louie-portfolio/static/media/cube-yellow.2b78b160d12e257af2b2.webp",
     "index.html": "/louie-portfolio/index.html",
-    "main.2f3d1844.css.map": "/louie-portfolio/static/css/main.2f3d1844.css.map",
-    "main.5698a3f1.js.map": "/louie-portfolio/static/js/main.5698a3f1.js.map",
+    "main.6a1a8a74.css.map": "/louie-portfolio/static/css/main.6a1a8a74.css.map",
+    "main.2a6e3ccb.js.map": "/louie-portfolio/static/js/main.2a6e3ccb.js.map",
     "453.3e16cc51.chunk.js.map": "/louie-portfolio/static/js/453.3e16cc51.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2f3d1844.css",
-    "static/js/main.5698a3f1.js"
+    "static/css/main.6a1a8a74.css",
+    "static/js/main.2a6e3ccb.js"
   ]
 }
