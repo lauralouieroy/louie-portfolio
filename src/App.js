@@ -8,19 +8,15 @@ import { Experience } from "./components/Experience";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Navbar } from "./components/Navbar";
+import { Preloader } from "./components/Preloader";
 import { Project } from "./components/Project";
 import { Technology } from "./components/Technology";
 import { motion, useScroll } from "framer-motion";
-import {
-  FaExclamationTriangle,
-  FaTimes,
-} from "react-icons/fa";
 
 function App() {
-  const portfolioOnProgress = true;
   const [loading, setLoading] = useState(true);
+  const [done, setDone] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [showNotice, setShowNotice] = useState(false);
   const [startHeroAnimation, setStartHeroAnimation] = useState(false);
 
   /* KEEP SCROLL PROGRESS */
@@ -28,132 +24,39 @@ function App() {
 
   useEffect(() => {
     let current = 0;
+    const timers = [];
 
     const interval = setInterval(() => {
-      current += Math.floor(Math.random() * 8) + 2;
+      current += Math.floor(Math.random() * 6) + 2;
 
       if (current >= 100) {
         current = 100;
         setProgress(100);
         clearInterval(interval);
 
-        setTimeout(() => {
-          setLoading(false);
-
-          /* show work in progress modal */
-          setTimeout(() => {
-            if (portfolioOnProgress) {
-              setShowNotice(true);
-            }
-          }, 500);
-
-          /* trigger hero stats AFTER preloader */
-          setTimeout(() => {
-            setStartHeroAnimation(true);
-          }, 700);
-        }, 800);
+        /* Hold on "Ready" with the city lit, then wipe up to reveal the hero. */
+        timers.push(setTimeout(() => setDone(true), 600));
+        timers.push(setTimeout(() => setStartHeroAnimation(true), 950));
+        timers.push(setTimeout(() => setLoading(false), 1550));
       } else {
         setProgress(current);
       }
-    }, 80);
+    }, 70);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      timers.forEach(clearTimeout);
+    };
   }, []);
 
   return (
     <>
-      {/* PRELOADER */}
-      {loading && (
-        <div
-          className={`preloader${progress >= 100 ? " is-done" : ""}`}
-        >
-          <div className="preloader-ambient" aria-hidden="true">
-            <span className="preloader-orb preloader-orb-a" />
-            <span className="preloader-orb preloader-orb-b" />
-            <span className="preloader-orb preloader-orb-c" />
-          </div>
-
-          <div className="preloader-content">
-            <div className="preloader-logo">
-              <span>LL</span>
-            </div>
-
-            <p className="preloader-tag">
-              Code / Build / Solve / Impact
-            </p>
-
-            <h1 className="preloader-name">
-              Louie Roy F. Laura
-            </h1>
-
-            <p className="preloader-role">
-              Software Engineer
-            </p>
-
-            <div className="preloader-progress">
-              <div className="progress-bar" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
-                <div
-                  className="progress-fill"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-
-              <p className="progress-text">
-                Loading portfolio — {progress}%
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* WORK IN PROGRESS MODAL */}
-      {showNotice && (
-        <div className="notice-modal">
-          <div className="notice-content">
-            <button
-              className="notice-close"
-              onClick={() => setShowNotice(false)}
-            >
-              <FaTimes />
-            </button>
-
-            <div className="notice-icon">
-              <FaExclamationTriangle />
-            </div>
-
-            <p className="notice-label">
-              WORK IN PROGRESS
-            </p>
-
-            <h2>
-              Portfolio is still being updated
-            </h2>
-
-            <p className="notice-text">
-              Some information, project details,
-              and content may not yet be fully
-              accurate or updated.
-              <br />
-              <br />
-              I’m continuously improving this
-              portfolio to better reflect my latest
-              work, experience, and skills.
-            </p>
-
-            <button
-              className="notice-btn"
-              onClick={() => setShowNotice(false)}
-            >
-              Continue Exploring
-            </button>
-          </div>
-        </div>
-      )}
+      {loading && <Preloader progress={progress} done={done} />}
 
       {/* MAIN WEBSITE */}
       <div
         className={`app ${
-          loading ? "app-hidden" : "app-show"
+          done ? "app-show" : "app-hidden"
         }`}
       >
         {/* KEEP THIS */}
