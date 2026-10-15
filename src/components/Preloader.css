@@ -31,7 +31,7 @@
     radial-gradient(ellipse 40% 45% at 85% 18%, rgba(159, 208, 245, 0.35), transparent 70%),
     radial-gradient(ellipse 35% 40% at 12% 30%, rgba(255, 191, 203, 0.22), transparent 70%),
     radial-gradient(ellipse 38% 40% at 18% 82%, rgba(191, 233, 204, 0.25), transparent 70%),
-    linear-gradient(180deg, #f7fbff 0%, #fbfdff 60%, #ffffff 100%);
+    linear-gradient(180deg, #e3effc 0%, #eef5fd 30%, #f8fbff 62%, #ffffff 100%);
 }
 
 [data-theme="dark"] .preloader-sky {

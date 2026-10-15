@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 
 const random = (seed) => () => {
   seed = (seed * 16807) % 2147483647;
@@ -85,6 +85,144 @@ export const Sun = ({ y }) => (
     </svg>
   </motion.div>
 );
+
+/*
+  Day clouds in three depths. x/y in % of the hero, w in vw, speed = seconds to drift across.
+  The near bank sits low so it peeks out from behind the skyline.
+*/
+const CLOUDS = {
+  far: [
+    { y: 7, w: 8, speed: 260, delay: -40, flip: false },
+    { y: 15, w: 6.5, speed: 300, delay: -170, flip: true },
+    { y: 4, w: 7, speed: 280, delay: -230, flip: false },
+  ],
+  mid: [
+    { y: 24, w: 17, speed: 190, delay: -20, flip: true },
+    { y: 38, w: 14, speed: 210, delay: -120, flip: false },
+  ],
+  near: [
+    { y: 56, w: 32, speed: 150, delay: -30, flip: false },
+    { y: 61, w: 28, speed: 165, delay: -105, flip: true },
+  ],
+};
+
+const CLOUD_RISE = { far: 30, mid: 70, near: 120 };
+
+const Cloud = ({ c, depth }) => (
+  <div
+    className={`day-cloud day-cloud--${depth}`}
+    style={{
+      top: `${c.y}%`,
+      "--cloud-w": `${c.w}vw`,
+      "--cloud-speed": `${c.speed}s`,
+      "--cloud-delay": `${c.delay}s`,
+    }}
+  >
+    <svg viewBox="0 0 200 90" style={c.flip ? { scale: "-1 1" } : undefined}>
+      <defs>
+        <linearGradient id={`dayCloudFill-${depth}`} x1="0" y1="18" x2="0" y2="88" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="55%" stopColor="#f2f7fd" />
+          <stop offset="100%" stopColor="#c9d8ec" />
+        </linearGradient>
+      </defs>
+      <g fill={`url(#dayCloudFill-${depth})`}>
+        <circle cx="62" cy="54" r="27" />
+        <circle cx="98" cy="42" r="35" />
+        <circle cx="138" cy="52" r="27" />
+        <circle cx="164" cy="64" r="17" />
+        <circle cx="36" cy="66" r="17" />
+        <rect x="36" y="56" width="128" height="26" rx="13" />
+      </g>
+    </svg>
+  </div>
+);
+
+export const Clouds = ({ progress, motionScale }) => {
+  const farY = useTransform(progress, (p) => -p * CLOUD_RISE.far * motionScale);
+  const midY = useTransform(progress, (p) => -p * CLOUD_RISE.mid * motionScale);
+  const nearY = useTransform(progress, (p) => -p * CLOUD_RISE.near * motionScale);
+  const ys = { far: farY, mid: midY, near: nearY };
+
+  return Object.entries(CLOUDS).map(([depth, list]) => (
+    <motion.div key={depth} className={`day-clouds day-clouds--${depth}`} style={{ y: ys[depth] }}>
+      {list.map((c, i) => (
+        <Cloud key={i} c={c} depth={depth} />
+      ))}
+    </motion.div>
+  ));
+};
+
+/* Same clouds without scroll parallax, for screens that don't scroll (the preloader). */
+export const DriftClouds = () =>
+  Object.entries(CLOUDS).map(([depth, list]) => (
+    <div key={depth} className={`day-clouds day-clouds--${depth}`}>
+      {list.map((c, i) => (
+        <Cloud key={i} c={c} depth={depth} />
+      ))}
+    </div>
+  ));
+
+/* Daytime counterpart to shooting stars: a small flock occasionally crossing the sky. */
+export const Birds = ({ reduceMotion }) => {
+  const [flock, setFlock] = useState(null);
+
+  useEffect(() => {
+    if (reduceMotion) return undefined;
+
+    let timer;
+    const schedule = (wait) => {
+      timer = setTimeout(() => {
+        if (!isDark() && !document.hidden) {
+          const count = 3 + Math.floor(Math.random() * 3);
+          setFlock({
+            id: Date.now(),
+            y: between(8, 26),
+            toLeft: Math.random() < 0.4,
+            duration: between(16, 22),
+            birds: Array.from({ length: count }, (_, i) => ({
+              dx: -i * between(16, 24),
+              dy: (i % 2 ? 1 : -1) * Math.ceil(i / 2) * between(7, 11),
+              size: between(0.75, 1.05),
+              flap: between(0.38, 0.5),
+            })),
+          });
+        }
+        schedule(between(14000, 26000));
+      }, wait);
+    };
+
+    schedule(between(2500, 6000));
+    return () => clearTimeout(timer);
+  }, [reduceMotion]);
+
+  if (!flock) return null;
+
+  return (
+    <div
+      key={flock.id}
+      className={`day-flock${flock.toLeft ? " day-flock--left" : ""}`}
+      style={{ top: `${flock.y}%`, "--flock-duration": `${flock.duration}s` }}
+      onAnimationEnd={(e) => e.target === e.currentTarget && setFlock(null)}
+    >
+      {flock.birds.map((b, i) => (
+        <svg
+          key={i}
+          className="day-bird"
+          viewBox="0 0 24 10"
+          style={{
+            left: `${b.dx}px`,
+            top: `${b.dy}px`,
+            "--bird-size": b.size,
+            "--bird-flap": `${b.flap}s`,
+          }}
+        >
+          <path d="M1 7 Q6 1 12 7 Q18 1 23 7" />
+        </svg>
+      ))}
+    </div>
+  );
+};
 
 const isDark = () => document.documentElement.dataset.theme === "dark";
 

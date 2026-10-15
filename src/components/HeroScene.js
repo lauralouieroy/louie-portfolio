@@ -13,7 +13,7 @@ import tileCode from "../assets/hero-scene/tile-code.webp";
 import tileBraces from "../assets/hero-scene/tile-braces.webp";
 import cubeYellow from "../assets/hero-scene/cube-yellow.webp";
 import { HeroSkyline } from "./HeroSkyline";
-import { Fireflies, Moon, ShootingStars, Sun } from "./HeroNightSky";
+import { Birds, Clouds, Fireflies, Moon, ShootingStars, Sun } from "./HeroNightSky";
 import { HeroWalkers } from "./HeroWalkers";
 import "./HeroScene.css";
 
@@ -325,9 +325,11 @@ export const HeroScene = ({ progress, mouseX, mouseY, reduceMotion }) => {
         <div className="scene-base-night" />
       </motion.div>
 
-      {/* Light mode only: the sun */}
+      {/* Light mode only: sun, drifting clouds in three depths, and the occasional flock of birds */}
       <div className="day-sky">
+        <Clouds progress={progress} motionScale={motionScale} />
         <Sun y={moonY} />
+        <Birds reduceMotion={reduceMotion} />
       </div>
 
       {/* Dark mode only: moon and the occasional shooting star, behind the skyline */}

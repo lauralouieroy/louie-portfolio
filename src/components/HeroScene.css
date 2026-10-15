@@ -30,7 +30,7 @@
     radial-gradient(ellipse 35% 40% at 12% 30%, rgba(255, 191, 203, 0.22), transparent 70%),
     radial-gradient(ellipse 38% 40% at 18% 82%, rgba(191, 233, 204, 0.28), transparent 70%),
     radial-gradient(ellipse 36% 40% at 88% 80%, rgba(255, 226, 166, 0.26), transparent 70%),
-    linear-gradient(180deg, #f7fbff 0%, #fbfdff 60%, #ffffff 100%);
+    linear-gradient(180deg, #e3effc 0%, #eef5fd 30%, #f8fbff 62%, #ffffff 100%);
   will-change: transform;
 }
 
@@ -133,6 +133,94 @@
   }
   50% {
     opacity: 1;
+  }
+}
+
+/* ================= CLOUDS + BIRDS (light mode) ================= */
+
+.day-clouds {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.day-cloud {
+  position: absolute;
+  left: 0;
+  width: var(--cloud-w);
+  animation: cloudDrift var(--cloud-speed) linear var(--cloud-delay) infinite;
+}
+
+.day-cloud svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.day-cloud--far {
+  opacity: 0.75;
+}
+
+.day-cloud--mid,
+.day-cloud--near {
+  opacity: 1;
+}
+
+@keyframes cloudDrift {
+  from {
+    transform: translateX(calc(-1 * var(--cloud-w)));
+  }
+  to {
+    transform: translateX(100vw);
+  }
+}
+
+.day-flock {
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 0;
+  animation: flockAcross var(--flock-duration) linear forwards;
+}
+
+.day-flock--left {
+  animation-direction: reverse;
+}
+
+.day-flock--left .day-bird {
+  scale: -1 1;
+}
+
+.day-bird {
+  position: absolute;
+  width: calc(24px * var(--bird-size));
+  overflow: visible;
+  fill: none;
+  stroke: #4a5a74;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.7;
+  transform-origin: 50% 70%;
+  animation: birdFlap var(--bird-flap) ease-in-out infinite alternate;
+}
+
+@keyframes flockAcross {
+  from {
+    transform: translate(-10vw, 0);
+  }
+  to {
+    transform: translate(110vw, -40px);
+  }
+}
+
+@keyframes birdFlap {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(-0.35);
   }
 }
 
@@ -765,7 +853,8 @@
     animation: none;
   }
 
-  .walker {
+  .walker,
+  .day-cloud {
     animation-play-state: paused;
   }
 

@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { DriftClouds, Moon, Sun } from "./HeroNightSky";
 import "./Preloader.css";
 
 const NAME = "Louie Roy F. Laura";
@@ -99,6 +100,13 @@ export const Preloader = ({ progress, done }) => {
   return (
     <div className={`preloader${done ? " is-done" : ""}`} role="status" aria-live="polite">
       <div className="preloader-sky" aria-hidden="true" />
+      <div className="day-sky" aria-hidden="true">
+        <DriftClouds />
+        <Sun />
+      </div>
+      <div className="night-sky" aria-hidden="true">
+        <Moon />
+      </div>
       {!reduceMotion && <Plane />}
       <Skyline progress={progress} />
 
