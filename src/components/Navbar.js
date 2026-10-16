@@ -30,6 +30,7 @@ export const Navbar = () => {
       "technology",
       "projects",
       "blog",
+      "certificates",
     ];
 
     const handleScroll = () => {
@@ -130,6 +131,16 @@ export const Navbar = () => {
               className={activeSection === "blog" ? "active-link" : ""}
             >
               Blogs
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#certificates"
+              onClick={closeMenu}
+              className={activeSection === "certificates" ? "active-link" : ""}
+            >
+              Certificates
             </a>
           </li>
 

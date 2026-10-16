@@ -30,7 +30,7 @@ export const Footer = () => {
             <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
               <FaLinkedinIn />
             </a>
-            <a href="https://github.com" aria-label="GitHub" target="_blank" rel="noreferrer">
+            <a href="https://github.com/lauralouieroy" aria-label="GitHub" target="_blank" rel="noreferrer">
               <FaGithub />
             </a>
           </div>
@@ -44,6 +44,7 @@ export const Footer = () => {
           <a href="#technology">Technology</a>
           <a href="#projects">Projects</a>
           <a href="#blog">Blogs</a>
+          <a href="#certificates">Certificates</a>
         </div>
 
         <div className="footer-column footer-connect">

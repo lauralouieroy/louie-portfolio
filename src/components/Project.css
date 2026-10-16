@@ -5,9 +5,9 @@
 */
 
 .projects {
-  padding: 96px clamp(40px, 5vw, 80px);
+  padding: 72px clamp(40px, 5vw, 80px);
   color: var(--text);
-  background: var(--bg);
+  background: transparent;
 }
 
 .project-container {
@@ -21,7 +21,7 @@
   justify-content: space-between;
   align-items: flex-end;
   gap: 24px;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .project-label {
@@ -179,9 +179,13 @@
   background: var(--overlay);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   z-index: 99999;
   backdrop-filter: blur(6px);
+  padding: 24px 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .project-modal-content {
@@ -193,15 +197,28 @@
   position: relative;
   color: var(--text);
   box-shadow: var(--shadow);
-  max-height: 90vh;
+  max-height: min(90vh, 900px);
+  margin: auto;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.project-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.project-modal-content::-webkit-scrollbar-thumb {
+  background: var(--bg-soft);
+  border-radius: 10px;
 }
 
 .close-modal {
-  position: absolute;
+  position: sticky;
   z-index: 2;
-  top: 20px;
-  right: 20px;
+  top: 0;
+  float: right;
+  margin: -12px -12px 8px 12px;
   background: #ff3b3b;
   border: none;
   color: #fff;
@@ -277,7 +294,7 @@
 
 @media (min-width: 1440px) {
   .projects {
-    padding: 104px clamp(48px, 4vw, 96px);
+    padding: 76px clamp(48px, 4vw, 96px);
   }
 
   .project-container {
@@ -307,7 +324,7 @@
 
 @media (min-width: 1800px) {
   .projects {
-    padding: 112px clamp(64px, 5vw, 120px);
+    padding: 80px clamp(64px, 5vw, 120px);
   }
 
   .project-container {
@@ -327,7 +344,7 @@
 
 @media (max-width: 1199px) and (min-width: 901px) {
   .projects {
-    padding: 80px 36px;
+    padding: 60px 36px;
   }
 
   .project-container {
@@ -360,7 +377,7 @@
 
 @media (max-width: 900px) {
   .projects {
-    padding: 72px 20px;
+    padding: 52px 20px;
   }
 
   .project-header {
@@ -399,7 +416,7 @@
   .project-modal-content {
     width: 100%;
     max-width: 420px;
-    max-height: 85vh;
+    max-height: min(88vh, 720px);
     padding: 22px;
   }
 
@@ -425,7 +442,7 @@
 
 @media (max-width: 480px) {
   .projects {
-    padding: 64px 16px;
+    padding: 48px 16px;
   }
 
   .section-title {

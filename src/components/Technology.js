@@ -160,8 +160,36 @@ const categories = [
 
 const PREVIEW_COUNT = 2;
 
+function useIsCompact() {
+  const getMatch = () =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 900px)").matches;
+
+  const [compact, setCompact] = useState(getMatch);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 900px)");
+    const onChange = () => setCompact(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  return compact;
+}
+
+function deckOffset(index, active, total) {
+  let offset = index - active;
+  if (offset > total / 2) offset -= total;
+  if (offset < -total / 2) offset += total;
+  return offset;
+}
+
 export const Technology = () => {
   const [activeCategory, setActiveCategory] = useState(null);
+  const [deckIndex, setDeckIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const isCompact = useIsCompact();
 
   useEffect(() => {
     if (!activeCategory) return undefined;
@@ -181,6 +209,31 @@ export const Technology = () => {
     };
   }, [activeCategory]);
 
+  const total = categories.length;
+
+  const goPrev = () => {
+    setDeckIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
+  };
+
+  const goNext = () => {
+    setDeckIndex((prev) => (prev + 1) % total);
+  };
+
+  const onTouchStart = (event) => {
+    setTouchStartX(event.changedTouches[0].clientX);
+  };
+
+  const onTouchEnd = (event) => {
+    if (touchStartX == null) return;
+    const delta = event.changedTouches[0].clientX - touchStartX;
+    setTouchStartX(null);
+    if (Math.abs(delta) < 40) return;
+    if (delta > 0) goPrev();
+    else goNext();
+  };
+
+  const openCategory = (category) => setActiveCategory(category);
+
   return (
     <ScrollReveal>
       <section id="technology" className="tech">
@@ -194,43 +247,115 @@ export const Technology = () => {
           </p>
         </div>
 
-        <div className="tech-categories">
-          {categories.map((category) => {
-            const previewTools = category.tools.slice(0, PREVIEW_COUNT);
+        {isCompact ? (
+          <div className="tech-deck-wrap">
+            <div
+              className="tech-deck"
+              onTouchStart={onTouchStart}
+              onTouchEnd={onTouchEnd}
+            >
+              {categories.map((category, index) => {
+                const offset = deckOffset(index, deckIndex, total);
+                const previewTools = category.tools.slice(0, PREVIEW_COUNT);
+                const isActive = offset === 0;
+                const isNear = Math.abs(offset) === 1;
 
-            return (
-              <article
-                key={category.id}
-                className={`tech-category tech-category--${category.tone}`}
-              >
-                <div className="tech-category-top">
-                  <span className="tech-category-icon">{category.icon}</span>
-                  <span className="tech-category-index">{category.id}</span>
-                </div>
+                if (!isActive && !isNear) return null;
 
-                <h3>{category.title}</h3>
-                <p className="tech-category-desc">{category.description}</p>
-
-                <div className="tech-tools">
-                  {previewTools.map((tool) => (
-                    <div key={tool.name} className="tech-tool">
-                      <span className="tech-tool-icon">{tool.icon}</span>
-                      <span className="tech-tool-name">{tool.name}</span>
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    className={`tech-deck-card tech-category tech-category--${category.tone} ${
+                      isActive ? "is-active" : "is-side"
+                    }`}
+                    style={{
+                      "--deck-offset": offset,
+                      zIndex: isActive ? 5 : 3 - Math.abs(offset),
+                    }}
+                    onClick={() => {
+                      if (isActive) openCategory(category);
+                      else if (offset < 0) goPrev();
+                      else goNext();
+                    }}
+                    aria-label={
+                      isActive
+                        ? `Open ${category.title}`
+                        : `Show ${category.title}`
+                    }
+                  >
+                    <div className="tech-category-top">
+                      <span className="tech-category-icon">{category.icon}</span>
+                      <span className="tech-category-index">{category.id}</span>
                     </div>
-                  ))}
-                </div>
 
-                <button
-                  type="button"
-                  className="tech-view-more"
-                  onClick={() => setActiveCategory(category)}
+                    <h3>{category.title}</h3>
+                    <p className="tech-category-desc">{category.description}</p>
+
+                    <div className="tech-tools">
+                      {previewTools.map((tool) => (
+                        <div key={tool.name} className="tech-tool">
+                          <span className="tech-tool-icon">{tool.icon}</span>
+                          <span className="tech-tool-name">{tool.name}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="tech-deck-dots" aria-hidden="true">
+              {categories.map((category, index) => (
+                <span
+                  key={category.id}
+                  className={`tech-deck-dot ${
+                    index === deckIndex ? "is-active" : ""
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="tech-categories">
+            {categories.map((category) => {
+              const previewTools = category.tools.slice(0, PREVIEW_COUNT);
+
+              return (
+                <article
+                  key={category.id}
+                  className={`tech-category tech-category--${category.tone}`}
                 >
-                  View more <FaArrowRight />
-                </button>
-              </article>
-            );
-          })}
-        </div>
+                  <div className="tech-category-top">
+                    <span className="tech-category-icon">{category.icon}</span>
+                    <span className="tech-category-index">{category.id}</span>
+                  </div>
+
+                  <h3>{category.title}</h3>
+                  <p className="tech-category-desc">{category.description}</p>
+
+                  <div className="tech-tools">
+                    {previewTools.map((tool) => (
+                      <div key={tool.name} className="tech-tool">
+                        <span className="tech-tool-icon">{tool.icon}</span>
+                        <span className="tech-tool-name">{tool.name}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    className="tech-view-more"
+                    onClick={() => openCategory(category)}
+                  >
+                    View more <FaArrowRight />
+                  </button>
+                </article>
+              );
+            })}
+          </div>
+        )}
 
         {activeCategory && (
           <div

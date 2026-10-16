@@ -29,9 +29,15 @@ const FIREFLIES = (() => {
   });
 })();
 
-export const Moon = ({ y }) => (
-  <motion.div className="night-moon" style={{ y }}>
-    <svg viewBox="-16 -16 96 96">
+export const Moon = ({ y, onActivate }) => (
+  <motion.button
+    type="button"
+    className="night-moon sky-egg"
+    style={{ y }}
+    onClick={onActivate}
+    aria-label="Moon easter egg: reveal a constellation"
+  >
+    <svg viewBox="-16 -16 96 96" aria-hidden="true">
       <defs>
         <radialGradient id="nightMoonFill" cx="40%" cy="35%" r="70%">
           <stop offset="0%" stopColor="#fff6d6" />
@@ -49,12 +55,18 @@ export const Moon = ({ y }) => (
       <circle cx="32" cy="32" r="47" fill="url(#nightMoonHalo)" />
       <circle cx="32" cy="32" r="24" fill="url(#nightMoonFill)" mask="url(#nightMoonCut)" />
     </svg>
-  </motion.div>
+  </motion.button>
 );
 
-export const Sun = ({ y }) => (
-  <motion.div className="day-sun" style={{ y }}>
-    <svg viewBox="0 0 100 100">
+export const Sun = ({ y, onActivate }) => (
+  <motion.button
+    type="button"
+    className="day-sun sky-egg"
+    style={{ y }}
+    onClick={onActivate}
+    aria-label="Sun easter egg: release a flock of birds"
+  >
+    <svg viewBox="0 0 100 100" aria-hidden="true">
       <defs>
         <radialGradient id="daySunFill" cx="42%" cy="38%" r="65%">
           <stop offset="0%" stopColor="#fff3b0" />
@@ -83,8 +95,80 @@ export const Sun = ({ y }) => (
       </g>
       <circle cx="50" cy="50" r="24" fill="url(#daySunFill)" />
     </svg>
-  </motion.div>
+  </motion.button>
 );
+
+/* One-shot burst when the sun or moon is clicked. */
+export const SkyBurst = ({ kind, burstKey, onDone }) => {
+  useEffect(() => {
+    if (!kind) return undefined;
+    const timer = window.setTimeout(onDone, 1400);
+    return () => window.clearTimeout(timer);
+  }, [kind, burstKey, onDone]);
+
+  if (!kind) return null;
+
+  if (kind === "day") {
+    const birds = Array.from({ length: 10 }, (_, i) => {
+      const angle = (-40 + i * 14) * (Math.PI / 180);
+      const dist = 90 + (i % 3) * 40;
+      return {
+        x: Math.cos(angle) * dist,
+        y: Math.sin(angle) * dist - 20,
+        delay: i * 0.04,
+        size: 0.75 + (i % 3) * 0.15,
+      };
+    });
+
+    return (
+      <div key={burstKey} className="sky-burst sky-burst--day" aria-hidden="true">
+        {birds.map((b, i) => (
+          <svg
+            key={i}
+            className="sky-burst-bird"
+            viewBox="0 0 24 10"
+            style={{
+              "--bx": `${b.x}px`,
+              "--by": `${b.y}px`,
+              "--bdelay": `${b.delay}s`,
+              "--bsize": b.size,
+            }}
+          >
+            <path d="M1 7 Q6 1 12 7 Q18 1 23 7" />
+          </svg>
+        ))}
+      </div>
+    );
+  }
+
+  const stars = Array.from({ length: 14 }, (_, i) => {
+    const angle = (i / 14) * Math.PI * 2;
+    const dist = 50 + (i % 4) * 28;
+    return {
+      x: Math.cos(angle) * dist,
+      y: Math.sin(angle) * dist,
+      delay: i * 0.03,
+      size: 2 + (i % 3),
+    };
+  });
+
+  return (
+    <div key={burstKey} className="sky-burst sky-burst--night" aria-hidden="true">
+      {stars.map((s, i) => (
+        <span
+          key={i}
+          className="sky-burst-star"
+          style={{
+            "--sx": `${s.x}px`,
+            "--sy": `${s.y}px`,
+            "--sdelay": `${s.delay}s`,
+            "--ssize": `${s.size}px`,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 /*
   Day clouds in three depths. x/y in % of the hero, w in vw, speed = seconds to drift across.

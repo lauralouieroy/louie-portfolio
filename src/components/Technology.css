@@ -1,11 +1,11 @@
 .tech {
-  padding: 100px 80px;
-  background: var(--bg-muted);
+  padding: 72px 80px;
+  background: transparent;
   position: relative;
 }
 
 .tech-header {
-  margin-bottom: 48px;
+  margin-bottom: 36px;
   max-width: 720px;
 }
 
@@ -55,8 +55,17 @@
 }
 
 .tech-category:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow);
+  border-color: color-mix(in srgb, var(--tone) 35%, transparent);
+}
+
+.tech-category:hover .tech-category-icon {
+  transform: scale(1.08);
+}
+
+.tech-category:hover .tech-view-more {
+  gap: 12px;
 }
 
 .tech-category--rose {
@@ -126,6 +135,7 @@
   color: var(--tone);
   font-size: 20px;
   background: rgba(var(--surface-rgb), 0.7);
+  transition: transform 0.3s ease;
 }
 
 .tech-category-index {
@@ -226,26 +236,45 @@
   background: var(--overlay);
   backdrop-filter: blur(6px);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   z-index: 99999;
-  padding: 20px;
+  padding: 24px 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tech-modal-content {
   width: 100%;
   max-width: 560px;
+  max-height: min(90vh, 820px);
+  margin: auto;
   border-radius: 24px;
   padding: 32px 28px;
   position: relative;
   box-shadow: var(--shadow);
   animation: techModalIn 0.28s ease;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tech-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tech-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(26, 32, 44, 0.18);
+  border-radius: 10px;
 }
 
 .tech-modal-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 2;
+  margin: -8px -8px 8px 8px;
   width: 40px;
   height: 40px;
   border: none;
@@ -322,9 +351,14 @@
   }
 }
 
+/* Mobile stacked deck — fan of cards like a swipeable stack */
+.tech-deck-wrap {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .tech {
-    padding: 80px 24px;
+    padding: 60px 24px;
   }
 
   .tech-header h1 {
@@ -336,28 +370,118 @@
   }
 
   .tech-categories {
-    grid-template-columns: 1fr;
-    gap: 14px;
+    display: none;
   }
 
-  .tech-category {
-    min-height: auto;
-    padding: 22px 18px;
+  .tech-deck-wrap {
+    display: block;
   }
 
-  .tech-category:hover {
-    transform: none;
+  .tech-deck {
+    position: relative;
+    height: min(58vh, 460px);
+    margin: 8px auto 18px;
+    max-width: 420px;
+    touch-action: pan-y;
   }
 
-  .tech-category h3 {
+  .tech-deck-card {
+    position: absolute;
+    inset: 0;
+    width: min(86%, 340px);
+    height: 100%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    padding: 22px 18px 18px;
+    text-align: left;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    font: inherit;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.35s ease,
+      box-shadow 0.35s ease;
+    transform-origin: center bottom;
+  }
+
+  .tech-deck-card.is-active {
+    transform: translateX(0) rotate(0deg) scale(1);
+    opacity: 1;
+    z-index: 5;
+    box-shadow: var(--shadow);
+  }
+
+  .tech-deck-card.is-active:hover,
+  .tech-deck-card.is-active:focus-visible {
+    transform: translateX(0) rotate(0deg) scale(1.03) translateY(-6px);
+    box-shadow: var(--shadow);
+    border-color: color-mix(in srgb, var(--tone) 40%, var(--border));
+  }
+
+  .tech-deck-card.is-active:active {
+    transform: translateX(0) rotate(0deg) scale(0.98);
+  }
+
+  .tech-deck-card.is-side {
+    opacity: 0.72;
+    pointer-events: auto;
+    z-index: 2;
+    transform:
+      translateX(calc(var(--deck-offset) * 58%))
+      rotate(calc(var(--deck-offset) * 9deg))
+      scale(0.88);
+  }
+
+  .tech-deck-card.is-side:hover {
+    opacity: 0.9;
+  }
+
+  .tech-deck-card .tech-category-top {
+    margin-bottom: 18px;
+  }
+
+  .tech-deck-card h3 {
     font-size: 20px;
+    margin: 0 0 8px;
   }
 
-  .tech-tools {
+  .tech-deck-card .tech-tools {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: auto;
+  }
+
+  .tech-deck-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tech-deck-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: 0.25s ease;
+  }
+
+  .tech-deck-dot.is-active {
+    width: 22px;
+    border-radius: 999px;
+    background: var(--accent);
   }
 
   .tech-modal-content {
+    max-height: min(88vh, 720px);
     padding: 26px 20px;
   }
 

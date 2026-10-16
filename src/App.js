@@ -3,10 +3,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+import { AmbientSky } from "./components/AmbientSky";
 import { Blog } from "./components/Blog";
+import { Certificates } from "./components/Certificates";
 import { CustomCursor } from "./components/CustomCursor";
 import { Experience } from "./components/Experience";
 import { Footer } from "./components/Footer";
+import { GithubActivity } from "./components/GithubActivity";
 import { Hero } from "./components/Hero";
 import { Navbar } from "./components/Navbar";
 import { Preloader } from "./components/Preloader";
@@ -52,6 +55,10 @@ function App() {
 
   return (
     <>
+      <a href="#about" className="skip-link">
+        Skip to content
+      </a>
+
       <CustomCursor />
       {loading && <Preloader progress={progress} done={done} />}
 
@@ -69,13 +76,19 @@ function App() {
           }}
         />
 
-        <Navbar />
-        <Hero startAnimation={startHeroAnimation} />
-        <Experience />
-        <Technology />
-        <Project />
-        <Blog />
-        <Footer />
+        <AmbientSky />
+
+        <div className="app-main">
+          <Navbar />
+          <Hero startAnimation={startHeroAnimation} />
+          <Experience />
+          <Technology />
+          <Project />
+          <Blog />
+          <Certificates />
+          <GithubActivity />
+          <Footer />
+        </div>
       </div>
     </>
   );

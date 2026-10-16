@@ -1,8 +1,8 @@
 /* Experience.css */
 
 .experience {
-  padding: 120px 80px;
-  background: var(--bg);
+  padding: 72px 80px;
+  background: transparent;
   color: var(--text);
   position: relative;
   overflow: hidden;
@@ -41,7 +41,7 @@
 
 .experience-header {
   text-align: center;
-  margin-bottom: 90px;
+  margin-bottom: 48px;
 }
 
 .experience-label {
@@ -66,34 +66,84 @@
 }
 
 .timeline {
+  --road-w: 18px;
+  --road-asphalt: #8b95a5;
+  --road-curb: #d7dde6;
+  --road-dash: rgba(255, 236, 170, 0.55);
+  --road-dash-lit: #ffe27a;
+  --road-travelled: #6f7a8c;
+
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+[data-theme="dark"] .timeline {
+  --road-asphalt: #2a3548;
+  --road-curb: #4a5c78;
+  --road-dash: rgba(255, 214, 120, 0.35);
+  --road-dash-lit: #ffd27a;
+  --road-travelled: #1c2638;
+}
+
+/* Asphalt road with light curb edges. */
 .timeline::before {
   content: "";
   position: absolute;
   left: 50%;
   top: 0;
-  width: 2px;
+  width: var(--road-w);
   height: 100%;
-  background: var(--bg-soft);
+  background: var(--road-asphalt);
+  border-left: 2px solid var(--road-curb);
+  border-right: 2px solid var(--road-curb);
+  box-sizing: border-box;
+  border-radius: 6px;
   transform: translateX(-50%);
   z-index: 1;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.12);
 }
 
-/* Fills behind the walker as the career journey scrolls. */
+/* Dashed centre lane markers along the full road. */
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--road-dash) 0 10px,
+    transparent 10px 20px
+  );
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Travelled stretch of road behind the walker, with lit lane dashes. */
 .timeline-progress {
   position: absolute;
   left: 50%;
   top: 0;
-  width: 2px;
-  background: var(--accent);
+  width: var(--road-w);
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      var(--road-dash-lit) 0 10px,
+      transparent 10px 20px
+    )
+    center / 2px 100% no-repeat,
+    var(--road-travelled);
+  border-left: 2px solid var(--road-curb);
+  border-right: 2px solid var(--road-curb);
+  box-sizing: border-box;
+  border-radius: 6px 6px 0 0;
   transform: translateX(-50%);
   z-index: 1;
-  border-radius: 999px;
   pointer-events: none;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.16);
 }
 
 .timeline-walker {
@@ -182,7 +232,7 @@
 .timeline-item {
   position: relative;
   width: 50%;
-  margin-bottom: 80px;
+  margin-bottom: 52px;
   z-index: 2;
 }
 
@@ -197,6 +247,7 @@
 }
 
 .timeline-content {
+  position: relative;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -211,15 +262,104 @@
   border-color: #d0d7e2;
 }
 
+/* Experience prop peeks over the card roof (book / kids-tech / laptop). */
+.timeline-card-mascot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 128px;
+  height: 70px;
+  translate: -50% -100%;
+  overflow: hidden;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.timeline-card-mascot-inner {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  width: 128px;
+  translate: -50% 0;
+}
+
+.timeline-card-mascot:not(.is-static) .timeline-card-mascot-inner {
+  animation: cardMascotBob 2.6s ease-in-out infinite;
+}
+
+.timeline-card-mascot.is-active:not(.is-static) .timeline-card-mascot-inner {
+  animation:
+    cardMascotBob 2.6s ease-in-out infinite,
+    cardMascotPop 0.45s ease;
+}
+
+.timeline-card-prop-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 6px 10px rgba(26, 32, 44, 0.2));
+}
+
+@keyframes cardMascotBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes cardMascotPop {
+  from {
+    scale: 0.9;
+  }
+  to {
+    scale: 1;
+  }
+}
+
+.timeline-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
 .timeline-year {
   display: inline-block;
   color: var(--accent);
   font-size: 13px;
   font-weight: 700;
-  margin-bottom: 14px;
+  margin: 0;
   background: var(--accent-soft);
   padding: 6px 12px;
   border-radius: var(--radius-pill);
+}
+
+.timeline-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 20px;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  overflow: hidden;
+}
+
+.timeline-org-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  padding: 4px;
+  background: #fff;
 }
 
 .timeline-content h3 {
@@ -296,7 +436,7 @@
 
 @media (max-width: 900px) {
   .experience {
-    padding: 90px 18px;
+    padding: 56px 18px;
   }
 
   .experience-connector {
@@ -312,34 +452,35 @@
     font-size: 11px;
   }
 
-  .timeline::before {
-    left: 18px;
-    width: 2px;
+  .timeline {
+    --road-w: 14px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .timeline::before,
+  .timeline-progress {
+    left: 16px;
     transform: none;
   }
 
-  .timeline-progress {
-    left: 18px;
+  .timeline::after {
+    left: calc(16px + var(--road-w) / 2);
     transform: none;
   }
 
   .timeline-walker {
-    left: 18px;
+    left: calc(16px + var(--road-w) / 2);
     width: 22px;
     height: 40px;
-  }
-
-  .timeline {
-    width: 100%;
-    max-width: 100%;
   }
 
   .timeline-item {
     width: 100%;
     left: 0 !important;
-    padding-left: 52px !important;
+    padding-left: 56px !important;
     padding-right: 0 !important;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
   }
 
   .timeline-content {
@@ -364,7 +505,7 @@
   }
 
   .timeline-icon {
-    left: -6px !important;
+    left: calc(16px + var(--road-w) / 2 - 22px) !important;
     top: 18px;
     width: 44px;
     height: 44px;
@@ -378,7 +519,28 @@
   }
 }
 
+@media (max-width: 900px) {
+  .timeline-card-mascot {
+    width: 100px;
+    height: 56px;
+    left: 56%;
+  }
+
+  .timeline-card-mascot-inner {
+    width: 100px;
+    top: 2px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .timeline-card-mascot {
+    animation: none !important;
+  }
+
+  .timeline-card-mascot .timeline-card-mascot-inner {
+    animation: none !important;
+  }
+
   .timeline-walker-body,
   .timeline-walker-limb--front-leg,
   .timeline-walker-limb--back-leg,

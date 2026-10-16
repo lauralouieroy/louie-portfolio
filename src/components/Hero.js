@@ -54,6 +54,22 @@ export const Hero = ({ startAnimation }) => {
 
   const resumePath = `${process.env.PUBLIC_URL}/resume.pdf`;
 
+  useEffect(() => {
+    if (!showResume) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setShowResume(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [showResume]);
+
   const heroRef = useRef(null);
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -185,11 +201,20 @@ export const Hero = ({ startAnimation }) => {
       </section>
 
       {showResume && (
-        <div className="resume-modal">
+        <div
+          className="resume-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Resume preview"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowResume(false);
+          }}
+        >
           <div className="resume-content">
             <button
               className="close-btn"
               onClick={() => setShowResume(false)}
+              aria-label="Close resume"
             >
               ✕
             </button>

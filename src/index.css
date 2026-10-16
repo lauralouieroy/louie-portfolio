@@ -20,7 +20,8 @@
   --footer-bg: #1a202c;
   --radius: 16px;
   --radius-pill: 999px;
-  --font: "Plus Jakarta Sans", sans-serif;
+  --font: "Source Sans 3", "Segoe UI", sans-serif;
+  --font-display: "Sora", "Segoe UI", sans-serif;
   --font-script: "Caveat", cursive;
 
   color-scheme: light;
@@ -78,6 +79,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1,
+h2,
+h3,
+.section-title,
+.experience-title,
+.preloader-name,
+.logo-name,
+.logo-initials,
+.footer-logo-text span {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -89,4 +103,38 @@ code {
 
 a {
   color: inherit;
+}
+
+/* Keyboard focus: Sora-friendly rings in the accent color */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1000000;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--navy);
+  color: var(--on-navy);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }

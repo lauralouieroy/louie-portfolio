@@ -11,7 +11,13 @@ import {
   FaCode,
   FaBuilding,
   FaBriefcase,
+  FaTerminal,
+  FaLandmark,
+  FaLaptopCode,
 } from "react-icons/fa";
+import carmonaSeal from "../assets/experience/carmona-seal.png";
+import cvsuLogo from "../assets/experience/cvsu-logo.png";
+import sviLogo from "../assets/experience/svi-logo.png";
 
 const REVEAL_EASE = [0.22, 1, 0.36, 1];
 const SKIN = "#f3c9a5";
@@ -20,6 +26,7 @@ const HAIR = "#2b2230";
 
 /* graduate → Hello World, worker → IT/CAYDO, programmer → Software Engineer */
 const ROLES = ["graduate", "worker", "programmer"];
+const ROLE_PROPS = ["book", "kids-tech", "laptop"];
 
 const Head = ({ cap }) => (
   <g>
@@ -59,27 +66,103 @@ const Legs = ({ pants, shoes }) => (
   </>
 );
 
+const Prop = ({ prop }) => {
+  if (prop === "book") {
+    return (
+      <g transform="translate(13.2 18.8)">
+        <rect x="0" y="1.2" width="8.2" height="6.2" rx="0.7" fill="#5b8fd4" />
+        <rect x="0.5" y="1.7" width="3.2" height="5.2" rx="0.3" fill="#e8f0fa" />
+        <rect x="4.2" y="1.7" width="3.5" height="5.2" rx="0.3" fill="#c9dcf5" />
+        <path d="M4 1.7 L4 6.9" stroke="#2d5faf" strokeWidth="0.55" />
+      </g>
+    );
+  }
+
+  if (prop === "kids-tech") {
+    return (
+      <g transform="translate(12.4 17.6)">
+        <rect x="0" y="2.2" width="7.4" height="9" rx="1.1" fill="#2b3648" />
+        <rect x="0.7" y="2.9" width="6" height="6.4" rx="0.5" fill="#7eaaea" />
+        <circle cx="3.7" cy="10.2" r="0.45" fill="#c3cfe2" />
+        <circle cx="10.2" cy="4.2" r="1.55" fill={SKIN} />
+        <rect x="9.1" y="5.7" width="2.2" height="3.2" rx="0.9" fill="#ff8fab" />
+        <rect x="9.2" y="8.7" width="0.85" height="2.2" rx="0.4" fill="#3b4a6b" />
+        <rect x="10.35" y="8.7" width="0.85" height="2.2" rx="0.4" fill="#3b4a6b" />
+      </g>
+    );
+  }
+
+  if (prop === "laptop") {
+    return (
+      <g transform="translate(12.2 19.2)">
+        <rect x="0.4" y="0" width="9.2" height="6.2" rx="0.9" fill="#c3cfe2" />
+        <rect x="1.1" y="0.7" width="7.8" height="4.2" rx="0.45" fill="#2b3648" />
+        <rect x="0" y="6" width="10" height="1.5" rx="0.4" fill="#9dbde9" />
+        <rect x="3.2" y="1.5" width="3.6" height="0.45" rx="0.2" fill="#5b8fd4" opacity="0.9" />
+        <rect x="2.4" y="2.5" width="5.2" height="0.4" rx="0.2" fill="#7eaaea" opacity="0.75" />
+        <rect x="2.4" y="3.4" width="4.2" height="0.4" rx="0.2" fill="#7eaaea" opacity="0.55" />
+      </g>
+    );
+  }
+
+  return null;
+};
+
 const FrontArm = ({ shirt, prop }) => (
   <g className="timeline-walker-limb timeline-walker-limb--front-arm">
     <rect x="10.5" y="13" width="3" height="11" rx="1.5" fill={shirt} />
     <circle cx="12" cy="23.5" r="1.6" fill={SKIN} />
-    {prop === "diploma" && (
-      <g>
-        <rect x="13.2" y="20.5" width="7" height="3.2" rx="0.6" fill="#f4efe4" stroke="#d4c8b0" strokeWidth="0.4" />
-        <rect x="18.8" y="20.8" width="1.4" height="2.6" fill="#c9a227" />
-      </g>
-    )}
-    {prop === "folder" && (
-      <rect x="13" y="19.5" width="7.5" height="5.5" rx="0.8" fill="#e8b84a" />
-    )}
-    {prop === "laptop" && (
-      <g>
-        <rect x="12.5" y="20" width="8" height="5.5" rx="0.8" fill="#c3cfe2" />
-        <rect x="13.2" y="20.6" width="6.6" height="3.6" rx="0.4" fill="#2b3648" />
-      </g>
-    )}
+    <Prop prop={prop} />
   </g>
 );
+
+/* Large prop icon that peeks over the experience card roof (not the person). */
+const CardPropIcon = ({ prop }) => {
+  if (prop === "book") {
+    return (
+      <svg viewBox="0 0 64 48" className="timeline-card-prop-svg" aria-hidden="true">
+        <rect x="6" y="10" width="24" height="32" rx="3" fill="#5b8fd4" />
+        <rect x="34" y="10" width="24" height="32" rx="3" fill="#7eaaea" />
+        <rect x="9" y="13" width="18" height="26" rx="2" fill="#e8f0fa" />
+        <rect x="37" y="13" width="18" height="26" rx="2" fill="#c9dcf5" />
+        <rect x="29" y="8" width="6" height="36" rx="2" fill="#2d5faf" />
+        <path d="M12 18 H24 M12 24 H22 M12 30 H24" stroke="#5b8fd4" strokeWidth="1.6" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (prop === "kids-tech") {
+    return (
+      <svg viewBox="0 0 72 52" className="timeline-card-prop-svg" aria-hidden="true">
+        <rect x="4" y="8" width="34" height="40" rx="5" fill="#2b3648" />
+        <rect x="8" y="12" width="26" height="28" rx="3" fill="#7eaaea" />
+        <circle cx="21" cy="44" r="2" fill="#c3cfe2" />
+        <circle cx="52" cy="14" r="7" fill={SKIN} />
+        <path d="M45 14 Q52 8 59 14" fill="#2b2230" />
+        <rect x="46" y="21" width="12" height="16" rx="5" fill="#ff8fab" />
+        <rect x="47" y="36" width="4" height="10" rx="2" fill="#3b4a6b" />
+        <rect x="53" y="36" width="4" height="10" rx="2" fill="#3b4a6b" />
+        <circle cx="21" cy="26" r="5" fill="#fff" opacity="0.35" />
+      </svg>
+    );
+  }
+
+  if (prop === "laptop") {
+    return (
+      <svg viewBox="0 0 72 48" className="timeline-card-prop-svg" aria-hidden="true">
+        <rect x="10" y="4" width="52" height="32" rx="4" fill="#c3cfe2" />
+        <rect x="14" y="8" width="44" height="24" rx="2.5" fill="#2b3648" />
+        <rect x="20" y="12" width="20" height="2.5" rx="1" fill="#5b8fd4" />
+        <rect x="20" y="18" width="32" height="2" rx="1" fill="#7eaaea" opacity="0.8" />
+        <rect x="20" y="23" width="26" height="2" rx="1" fill="#7eaaea" opacity="0.55" />
+        <rect x="4" y="36" width="64" height="8" rx="2" fill="#9dbde9" />
+        <rect x="28" y="38.5" width="16" height="3" rx="1.5" fill="#5b8fd4" opacity="0.5" />
+      </svg>
+    );
+  }
+
+  return null;
+};
 
 const TimelineWalker = ({ role }) => {
   const looks = {
@@ -88,7 +171,7 @@ const TimelineWalker = ({ role }) => {
       pants: "#1a202c",
       shoes: SHOE,
       cap: "mortarboard",
-      prop: "diploma",
+      prop: "book",
       extra: "gown",
     },
     worker: {
@@ -96,7 +179,7 @@ const TimelineWalker = ({ role }) => {
       pants: "#3b4a6b",
       shoes: "#4a5568",
       cap: "worker",
-      prop: "folder",
+      prop: "kids-tech",
       extra: "badge",
     },
     programmer: {
@@ -154,25 +237,31 @@ export const Experience = () => {
 
   const experiences = [
     {
-      year: "2018",
+      year: "2018 – 2023",
       title: "Hello World",
-      company: "Started Programming Journey",
-      period: "The Beginning",
+      company: "Cavite State University — Carmona Campus",
+      period: "Bachelor of Science in Information Technology · August 2018 – April 2023",
       icon: <FaCode />,
+      cardIcon: <FaTerminal />,
+      logo: cvsuLogo,
+      logoAlt: "Cavite State University logo",
       side: "right",
       description: [
-        "Wrote my first line of code and discovered my passion for software development.",
-        "Started learning problem solving, logic building, and software fundamentals.",
-        "Developed strong interest in creating digital solutions and modern applications.",
+        "Began my programming journey while pursuing BSIT at Cavite State University — Carmona Campus.",
+        "Built foundations in problem solving, software fundamentals, and modern application development.",
+        "Grew from first lines of code into a passion for creating digital solutions that make an impact.",
       ],
     },
 
     {
       year: "2022",
       title: "IT and CAYDO",
-      company: "Municipality of Carmona, Cavite",
+      company: "City of Carmona, Cavite",
       period: "March 2022 – March 2023",
       icon: <FaBuilding />,
+      cardIcon: <FaLandmark />,
+      logo: carmonaSeal,
+      logoAlt: "City of Carmona seal",
       side: "left",
       description: [
         "Managing data, information, materials, documents, and social media.",
@@ -187,18 +276,24 @@ export const Experience = () => {
     {
       year: "2023 - Present",
       title: "Software Engineer",
-      company: "SVI Software Service Corporation",
-      period: "August 2023 – Present",
+      company: "Software Ventures International – Software Service Corporation",
+      period: "August 2023 – Present · Ortigas, Pasig City",
       icon: <FaBriefcase />,
+      cardIcon: <FaLaptopCode />,
+      logo: sviLogo,
+      logoAlt: "SVI logo",
       side: "right",
       description: [
-        "Built and enhanced an Authentication System with Single Sign-On (SSO) Portal.",
-        "Developed KYC Onboarding systems with biometric login and OCR-based ID verification.",
-        "Created batch processing programs for credit card approval and onboarding.",
-        "Developed loan processing APIs and automated report generation systems.",
-        "Enhanced employee timekeeping, payroll, and HR management systems.",
-        "Integrated Keycloak-based access control and role management solutions.",
-        "Improved dealership record systems through automation and bulk uploads.",
+        "Built and enhanced a mobile-first Authentication and Single Sign-On (SSO) platform, enabling secure and responsive access across devices and applications.",
+        "Integrated SSO with KYC Onboarding, KYC Viewer, SSO Administration, and Role-Based Access Management applications, supporting identity verification, user and access management, application integration, and secure onboarding workflows.",
+        "Contributed to the modernization and development of a loan origination and credit information system by translating legacy business processes into a modern React and Spring Boot architecture, improving its foundation for scalability and future enhancements.",
+        "Developed credit card batch-processing programs that load, encrypt, validate, and transmit customer KYC data to banking clients, improving the reliability of credit-card decisioning and onboarding workflows.",
+        "Enhanced an employee timekeeping system with biometric clock in/out, shift scheduling, swap requests, and responsive mobile interfaces for attendance and leave management.",
+        "Improved the payroll system by updating BIR, SSS, and HDMF reporting templates, enhancing 13th-month pay processing, and implementing version tracking to improve compliance and auditability.",
+        "Integrated Keycloak-based role management into an HR file and access management system, centralizing authorization and strengthening secure access control.",
+        "Developed a government transaction-processing module supporting multiple transaction types, validation workflows, and downstream batch processing.",
+        "Automated bulk uploads and exception reporting for a dealership management system while linking customer and vehicle records, improving data consistency and reducing manual data handling.",
+        "Mentored programmer trainees as an Instructor and Panelist, strengthening their understanding of usability, design practices, web services, and database integration through technical guidance and project evaluation.",
       ],
     },
   ];
@@ -298,9 +393,33 @@ export const Experience = () => {
               }`}
             >
               <div className="timeline-content">
-                <span className="timeline-year">
-                  {item.year}
-                </span>
+                {activeIndex === index && (
+                  <div
+                    className={`timeline-card-mascot is-active${
+                      reduceMotion ? " is-static" : ""
+                    }`}
+                    aria-hidden="true"
+                  >
+                    <div className="timeline-card-mascot-inner">
+                      <CardPropIcon prop={ROLE_PROPS[index] || "book"} />
+                    </div>
+                  </div>
+                )}
+
+                <div className="timeline-card-top">
+                  <span className="timeline-year">{item.year}</span>
+                  <span className="timeline-card-icon" aria-hidden="true">
+                    {item.logo ? (
+                      <img
+                        src={item.logo}
+                        alt=""
+                        className="timeline-org-logo"
+                      />
+                    ) : (
+                      item.cardIcon
+                    )}
+                  </span>
+                </div>
 
                 <h3>{item.title}</h3>
 

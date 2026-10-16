@@ -88,6 +88,21 @@ export const Project = () => {
   const visibleCount = useVisibleCount();
   const canSlide = projects.length > visibleCount;
 
+  useEffect(() => {
+    if (!selectedProject) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setSelectedProject(null);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [selectedProject]);
+
   const nextSlide = () => {
     if (!canSlide) return;
     setStartIndex((prev) => (prev + 1) % projects.length);

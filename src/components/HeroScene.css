@@ -100,19 +100,112 @@
   visibility: hidden;
 }
 
-.day-sun {
+.sky-egg-anchor {
   position: absolute;
   top: 13%;
   left: 75%;
+  width: 0;
+  height: 0;
+  z-index: 6;
+}
+
+.day-sun,
+.night-moon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  translate: -50% -50%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.day-sun:focus-visible,
+.night-moon:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+  border-radius: 50%;
+}
+
+.day-sun {
   width: clamp(64px, 5.6vw, 100px);
   aspect-ratio: 1;
-  translate: -50% -50%;
 }
 
 .day-sun svg {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.sky-burst {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.sky-burst-bird {
+  position: absolute;
+  width: calc(18px * var(--bsize, 1));
+  height: auto;
+  fill: none;
+  stroke: #4a5d78;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: skyBurstBird 1.15s ease-out var(--bdelay, 0s) forwards;
+}
+
+[data-theme="dark"] .sky-burst-bird {
+  stroke: #c9d6ea;
+}
+
+.sky-burst-star {
+  position: absolute;
+  width: var(--ssize, 3px);
+  height: var(--ssize, 3px);
+  border-radius: 50%;
+  background: #fff6d6;
+  box-shadow: 0 0 8px rgba(255, 217, 143, 0.85);
+  opacity: 0;
+  animation: skyBurstStar 1.2s ease-out var(--sdelay, 0s) forwards;
+}
+
+@keyframes skyBurstBird {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--bx)), calc(-50% + var(--by))) scale(1);
+  }
+}
+
+@keyframes skyBurstStar {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--sx)), calc(-50% + var(--sy))) scale(1.1);
+  }
 }
 
 .day-sun-rays {
@@ -400,12 +493,8 @@
 /* ================= NIGHT SKY (dark mode) ================= */
 
 .night-moon {
-  position: absolute;
-  top: 13%;
-  left: 75%;
   width: clamp(60px, 5.2vw, 92px);
   aspect-ratio: 1;
-  translate: -50% -50%;
 }
 
 .night-moon svg {
@@ -814,8 +903,7 @@
     display: none;
   }
 
-  .night-moon,
-  .day-sun {
+  .sky-egg-anchor {
     top: 12%;
     left: 84%;
   }
@@ -843,6 +931,8 @@
   .night-firefly,
   .night-firefly-glow,
   .day-sun-rays,
+  .sky-burst-bird,
+  .sky-burst-star,
   .walker-body,
   .walker-limb,
   .walker-dog-leg,

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -13,7 +13,15 @@ import tileCode from "../assets/hero-scene/tile-code.webp";
 import tileBraces from "../assets/hero-scene/tile-braces.webp";
 import cubeYellow from "../assets/hero-scene/cube-yellow.webp";
 import { HeroSkyline } from "./HeroSkyline";
-import { Birds, Clouds, Fireflies, Moon, ShootingStars, Sun } from "./HeroNightSky";
+import {
+  Birds,
+  Clouds,
+  Fireflies,
+  Moon,
+  ShootingStars,
+  SkyBurst,
+  Sun,
+} from "./HeroNightSky";
 import { HeroWalkers } from "./HeroWalkers";
 import "./HeroScene.css";
 
@@ -308,6 +316,14 @@ const PaperPlane = ({ reduceMotion }) => {
 
 export const HeroScene = ({ progress, mouseX, mouseY, reduceMotion }) => {
   const motionScale = reduceMotion ? 0 : 1;
+  const [burst, setBurst] = useState(null);
+
+  const triggerBurst = useCallback((kind) => {
+    if (reduceMotion) return;
+    setBurst({ kind, key: Date.now() });
+  }, [reduceMotion]);
+
+  const clearBurst = useCallback(() => setBurst(null), []);
 
   const baseY = useTransform(progress, [0, 1], [0, -40 * motionScale]);
   const moonY = useTransform(progress, [0, 1], [0, -90 * motionScale]);
@@ -319,32 +335,52 @@ export const HeroScene = ({ progress, mouseX, mouseY, reduceMotion }) => {
   const layerProps = { progress, mouseX, mouseY, motionScale };
 
   return (
-    <div className="hero-scene" aria-hidden="true">
+    <div className="hero-scene">
       {/* 1. Base: airy day sky, with the night sky cross-fading over it in dark mode */}
-      <motion.div className="scene-base" style={{ y: baseY }}>
+      <motion.div className="scene-base" style={{ y: baseY }} aria-hidden="true">
         <div className="scene-base-night" />
       </motion.div>
 
       {/* Light mode only: sun, drifting clouds in three depths, and the occasional flock of birds */}
       <div className="day-sky">
-        <Clouds progress={progress} motionScale={motionScale} />
-        <Sun y={moonY} />
-        <Birds reduceMotion={reduceMotion} />
+        <div aria-hidden="true">
+          <Clouds progress={progress} motionScale={motionScale} />
+        </div>
+        <div className="sky-egg-anchor">
+          <Sun y={moonY} onActivate={() => triggerBurst("day")} />
+          {burst?.kind === "day" && (
+            <SkyBurst kind="day" burstKey={burst.key} onDone={clearBurst} />
+          )}
+        </div>
+        <div aria-hidden="true">
+          <Birds reduceMotion={reduceMotion} />
+        </div>
       </div>
 
       {/* Dark mode only: moon and the occasional shooting star, behind the skyline */}
       <div className="night-sky">
-        <Moon y={moonY} />
-        <ShootingStars reduceMotion={reduceMotion} />
+        <div className="sky-egg-anchor">
+          <Moon y={moonY} onActivate={() => triggerBurst("night")} />
+          {burst?.kind === "night" && (
+            <SkyBurst kind="night" burstKey={burst.key} onDone={clearBurst} />
+          )}
+        </div>
+        <div aria-hidden="true">
+          <ShootingStars reduceMotion={reduceMotion} />
+        </div>
       </div>
 
       {/* Skyline: far, mid and edge layers each sink at their own rate as the hero scrolls away */}
-      <HeroSkyline progress={progress} mouseX={mouseX} motionScale={motionScale} />
+      <div aria-hidden="true">
+        <HeroSkyline progress={progress} mouseX={mouseX} motionScale={motionScale} />
+      </div>
 
       {/* Little cartoon people strolling along the street below the skyline */}
-      <HeroWalkers progress={progress} motionScale={motionScale} />
+      <div aria-hidden="true">
+        <HeroWalkers progress={progress} motionScale={motionScale} />
+      </div>
 
-      <motion.div className="scene-decor" style={{ opacity: decorOpacity }}>
+      <motion.div className="scene-decor" style={{ opacity: decorOpacity }} aria-hidden="true">
 
         {/* 2. Distant: a single faint dot grid */}
         <SceneLayer name="distant" {...layerProps}>

@@ -1,0 +1,72 @@
+.ambient-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ambient-sky-day,
+.ambient-sky-night {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.6s ease, visibility 0.6s;
+}
+
+.ambient-sky-day {
+  background:
+    radial-gradient(ellipse 40% 45% at 85% 18%, rgba(159, 208, 245, 0.28), transparent 70%),
+    radial-gradient(ellipse 35% 40% at 12% 30%, rgba(255, 191, 203, 0.16), transparent 70%),
+    radial-gradient(ellipse 38% 40% at 18% 82%, rgba(191, 233, 204, 0.18), transparent 70%),
+    linear-gradient(180deg, #e3effc 0%, #eef5fd 28%, #f7fbff 62%, #ffffff 100%);
+  opacity: 1;
+  visibility: visible;
+}
+
+.ambient-sky-night {
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(126, 170, 234, 0.16), transparent 70%),
+    radial-gradient(ellipse 40% 45% at 85% 18%, rgba(126, 170, 234, 0.1), transparent 70%),
+    linear-gradient(180deg, #070d19 0%, #0b1424 55%, #101b30 100%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+[data-theme="dark"] .ambient-sky-day {
+  opacity: 0;
+  visibility: hidden;
+}
+
+[data-theme="dark"] .ambient-sky-night {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Extra star field for the page sky (hero already has its own). */
+.ambient-sky-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.2px 1.2px at 20px 30px, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 120px 90px, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1.4px 1.4px at 200px 40px, rgba(200, 220, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 80px 140px, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(1.2px 1.2px at 260px 110px, rgba(220, 235, 255, 0.55), transparent);
+  background-size: 280px 180px;
+  opacity: 0.9;
+}
+
+/* Reuse hero sky particle layers inside the ambient wrappers. */
+.ambient-sky-day .day-clouds,
+.ambient-sky-day .day-flock,
+.ambient-sky-night .night-fireflies,
+.ambient-sky-night .night-shooting-star {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.ambient-sky-night .night-fireflies {
+  position: absolute;
+  inset: 0;
+}
