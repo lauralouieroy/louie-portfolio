@@ -1,5 +1,7 @@
+import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { DriftClouds, Moon, Sun } from "./HeroNightSky";
+import { armAudioUnlock, playPreloaderExit, playPreloaderOpen } from "../sounds";
 import "./Preloader.css";
 
 const NAME = "Louie Roy F. Laura";
@@ -96,6 +98,45 @@ const Plane = () => (
 
 export const Preloader = ({ progress, done }) => {
   const reduceMotion = useReducedMotion();
+  const openPlayed = useRef(false);
+  const exitPlayed = useRef(false);
+
+  useEffect(() => armAudioUnlock(), []);
+
+  useEffect(() => {
+    if (openPlayed.current) return undefined;
+    openPlayed.current = true;
+
+    const theme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    let cancelled = false;
+
+    const tryPlay = async () => {
+      if (cancelled) return;
+      const ok = await playPreloaderOpen(theme);
+      if (!ok && !cancelled) {
+        /* Autoplay blocked: play as soon as the user interacts. */
+        const onGesture = async () => {
+          window.removeEventListener("pointerdown", onGesture);
+          window.removeEventListener("keydown", onGesture);
+          if (!cancelled) await playPreloaderOpen(theme);
+        };
+        window.addEventListener("pointerdown", onGesture, { once: true });
+        window.addEventListener("keydown", onGesture, { once: true });
+      }
+    };
+
+    tryPlay();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!done || exitPlayed.current) return;
+    exitPlayed.current = true;
+    const theme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    playPreloaderExit(theme);
+  }, [done]);
 
   return (
     <div className={`preloader${done ? " is-done" : ""}`} role="status" aria-live="polite">

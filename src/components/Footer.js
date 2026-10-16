@@ -14,17 +14,14 @@ export const Footer = () => {
   return (
     <footer id="footer" className="footer">
       <div className="footer-container">
-        {/* LEFT SIDE */}
         <div className="footer-column footer-brand">
           <div className="footer-logo">
             <div className="logo-icon">LL</div>
-            <span>LOUIE ROY F. LAURA</span>
+            <div className="footer-logo-text">
+              <span>LOUIE ROY F. LAURA</span>
+              <p>SOFTWARE ENGINEER</p>
+            </div>
           </div>
-
-          <p>
-            Let&apos;s build something meaningful —
-            digital solutions with passion and purpose.
-          </p>
 
           <div className="footer-socials">
             <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
@@ -39,8 +36,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* QUICK LINKS */}
-        <div className="footer-column">
+        <div className="footer-column footer-links">
           <h4>Quick Links</h4>
 
           <a href="#about">About</a>
@@ -50,15 +46,10 @@ export const Footer = () => {
           <a href="#blog">Blogs</a>
         </div>
 
-        {/* LET'S CONNECT */}
         <div className="footer-column footer-connect">
           <h4>Let’s Connect</h4>
 
-          <p>
-            Have a project in mind?
-            <br />
-            Let’s build something great together.
-          </p>
+          <p>Have a project in mind? Let&apos;s talk.</p>
 
           <div className="contact-info">
             <div className="contact-item">
@@ -83,7 +74,6 @@ export const Footer = () => {
         </div>
       </div>
 
-      {/* BOTTOM */}
       <div className="footer-bottom">
         <p>© 2026 Louie Roy F. Laura. All rights reserved.</p>
 

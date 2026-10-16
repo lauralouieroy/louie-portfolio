@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 import { Blog } from "./components/Blog";
+import { CustomCursor } from "./components/CustomCursor";
 import { Experience } from "./components/Experience";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
@@ -51,6 +52,7 @@ function App() {
 
   return (
     <>
+      <CustomCursor />
       {loading && <Preloader progress={progress} done={done} />}
 
       {/* MAIN WEBSITE */}
