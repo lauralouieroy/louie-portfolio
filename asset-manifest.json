@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/louie-portfolio/static/css/main.3eb64beb.css",
-    "main.js": "/louie-portfolio/static/js/main.375db2da.js",
+    "main.css": "/louie-portfolio/static/css/main.b5f4802a.css",
+    "main.js": "/louie-portfolio/static/js/main.e697469d.js",
     "static/js/453.3e16cc51.chunk.js": "/louie-portfolio/static/js/453.3e16cc51.chunk.js",
     "static/media/carmona-seal.png": "/louie-portfolio/static/media/carmona-seal.b6c1b4fb659784f9f636.png",
     "static/media/app-builders-hackathon.png": "/louie-portfolio/static/media/app-builders-hackathon.6c33be92903df70c3259.png",
@@ -21,12 +21,12 @@
     "static/media/stratosense.webp": "/louie-portfolio/static/media/stratosense.57a25c5edbffe8393aee.webp",
     "static/media/cube-yellow.webp": "/louie-portfolio/static/media/cube-yellow.2b78b160d12e257af2b2.webp",
     "index.html": "/louie-portfolio/index.html",
-    "main.3eb64beb.css.map": "/louie-portfolio/static/css/main.3eb64beb.css.map",
-    "main.375db2da.js.map": "/louie-portfolio/static/js/main.375db2da.js.map",
+    "main.b5f4802a.css.map": "/louie-portfolio/static/css/main.b5f4802a.css.map",
+    "main.e697469d.js.map": "/louie-portfolio/static/js/main.e697469d.js.map",
     "453.3e16cc51.chunk.js.map": "/louie-portfolio/static/js/453.3e16cc51.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3eb64beb.css",
-    "static/js/main.375db2da.js"
+    "static/css/main.b5f4802a.css",
+    "static/js/main.e697469d.js"
   ]
 }
