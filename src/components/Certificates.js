@@ -109,12 +109,11 @@ const CERTIFICATES = [
 ].sort((a, b) => b.sortKey.localeCompare(a.sortKey));
 
 function useVisibleCount() {
-  /* null = show all (desktop); otherwise carousel page size */
   const getCount = () => {
-    if (typeof window === "undefined") return null;
+    if (typeof window === "undefined") return 4;
     if (window.innerWidth <= 900) return 1;
     if (window.innerWidth <= 1199) return 2;
-    return null;
+    return 4;
   };
 
   const [count, setCount] = useState(getCount);
@@ -131,8 +130,7 @@ function useVisibleCount() {
 export const Certificates = () => {
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = useVisibleCount();
-  const isCarousel = visibleCount != null;
-  const canSlide = isCarousel && CERTIFICATES.length > visibleCount;
+  const canSlide = CERTIFICATES.length > visibleCount;
 
   useEffect(() => {
     setStartIndex(0);
@@ -150,11 +148,9 @@ export const Certificates = () => {
     );
   };
 
-  const visible = isCarousel
-    ? Array.from({ length: visibleCount }, (_, i) => {
-        return CERTIFICATES[(startIndex + i) % CERTIFICATES.length];
-      })
-    : CERTIFICATES;
+  const visible = Array.from({ length: visibleCount }, (_, i) => {
+    return CERTIFICATES[(startIndex + i) % CERTIFICATES.length];
+  });
 
   return (
     <ScrollReveal>
@@ -168,26 +164,24 @@ export const Certificates = () => {
               </h1>
             </div>
 
-            {isCarousel && (
-              <div className="carousel-controls certificates-carousel">
-                <button
-                  type="button"
-                  onClick={prevSlide}
-                  disabled={!canSlide}
-                  aria-label="Previous certificates"
-                >
-                  <FaArrowLeft />
-                </button>
-                <button
-                  type="button"
-                  onClick={nextSlide}
-                  disabled={!canSlide}
-                  aria-label="Next certificates"
-                >
-                  <FaArrowRight />
-                </button>
-              </div>
-            )}
+            <div className="carousel-controls certificates-carousel">
+              <button
+                type="button"
+                onClick={prevSlide}
+                disabled={!canSlide}
+                aria-label="Previous certificates"
+              >
+                <FaArrowLeft />
+              </button>
+              <button
+                type="button"
+                onClick={nextSlide}
+                disabled={!canSlide}
+                aria-label="Next certificates"
+              >
+                <FaArrowRight />
+              </button>
+            </div>
           </div>
 
           <div className="certificates-grid">

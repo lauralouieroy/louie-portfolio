@@ -8,12 +8,14 @@ import {
 } from "framer-motion";
 import "./Experience.css";
 import {
+  FaArrowRight,
   FaCode,
   FaBuilding,
   FaBriefcase,
   FaTerminal,
   FaLandmark,
   FaLaptopCode,
+  FaTimes,
 } from "react-icons/fa";
 import carmonaSeal from "../assets/experience/carmona-seal.png";
 import cvsuLogo from "../assets/experience/cvsu-logo.png";
@@ -26,7 +28,7 @@ const HAIR = "#2b2230";
 
 /* graduate → Hello World, worker → IT/CAYDO, programmer → Software Engineer */
 const ROLES = ["graduate", "worker", "programmer"];
-const ROLE_PROPS = ["book", "kids-tech", "laptop"];
+const ROLE_PROPS = ["book", "community", "laptop"];
 
 const Head = ({ cap }) => (
   <g>
@@ -78,16 +80,17 @@ const Prop = ({ prop }) => {
     );
   }
 
-  if (prop === "kids-tech") {
+  if (prop === "community") {
     return (
-      <g transform="translate(12.4 17.6)">
-        <rect x="0" y="2.2" width="7.4" height="9" rx="1.1" fill="#2b3648" />
-        <rect x="0.7" y="2.9" width="6" height="6.4" rx="0.5" fill="#7eaaea" />
-        <circle cx="3.7" cy="10.2" r="0.45" fill="#c3cfe2" />
-        <circle cx="10.2" cy="4.2" r="1.55" fill={SKIN} />
-        <rect x="9.1" y="5.7" width="2.2" height="3.2" rx="0.9" fill="#ff8fab" />
-        <rect x="9.2" y="8.7" width="0.85" height="2.2" rx="0.4" fill="#3b4a6b" />
-        <rect x="10.35" y="8.7" width="0.85" height="2.2" rx="0.4" fill="#3b4a6b" />
+      <g transform="translate(12.2 18)">
+        <circle cx="3.2" cy="3.2" r="1.5" fill={SKIN} />
+        <rect x="2.2" y="4.7" width="2" height="3" rx="0.8" fill="#2f6fed" />
+        <circle cx="7.2" cy="3" r="1.5" fill={SKIN} />
+        <rect x="6.2" y="4.5" width="2" height="3.2" rx="0.8" fill="#48a39a" />
+        <circle cx="5.2" cy="6.8" r="1.35" fill={SKIN} />
+        <rect x="4.3" y="8.1" width="1.8" height="2.6" rx="0.7" fill="#e0b400" />
+        <rect x="9.4" y="4.2" width="4.6" height="5.8" rx="0.7" fill="#2b3648" />
+        <rect x="9.9" y="4.7" width="3.6" height="3.8" rx="0.35" fill="#7eaaea" />
       </g>
     );
   }
@@ -120,41 +123,85 @@ const FrontArm = ({ shirt, prop }) => (
 const CardPropIcon = ({ prop }) => {
   if (prop === "book") {
     return (
-      <svg viewBox="0 0 64 48" className="timeline-card-prop-svg" aria-hidden="true">
-        <rect x="6" y="10" width="24" height="32" rx="3" fill="#5b8fd4" />
-        <rect x="34" y="10" width="24" height="32" rx="3" fill="#7eaaea" />
-        <rect x="9" y="13" width="18" height="26" rx="2" fill="#e8f0fa" />
-        <rect x="37" y="13" width="18" height="26" rx="2" fill="#c9dcf5" />
-        <rect x="29" y="8" width="6" height="36" rx="2" fill="#2d5faf" />
-        <path d="M12 18 H24 M12 24 H22 M12 30 H24" stroke="#5b8fd4" strokeWidth="1.6" strokeLinecap="round" />
+      <svg
+        viewBox="0 0 72 52"
+        className="timeline-card-prop-svg timeline-card-prop-svg--book"
+        aria-hidden="true"
+      >
+        <rect x="32" y="8" width="8" height="40" rx="2" fill="#2d5faf" />
+        <g className="prop-book-page prop-book-page--3">
+          <path d="M36 10 H58 Q62 10 62 14 V42 Q62 46 58 46 H36 Z" fill="#f4f7fb" />
+        </g>
+        <g className="prop-book-page prop-book-page--2">
+          <path d="M36 10 H56 Q60 10 60 14 V42 Q60 46 56 46 H36 Z" fill="#e8f0fa" />
+        </g>
+        <g className="prop-book-page prop-book-page--1">
+          <path d="M36 10 H54 Q58 10 58 14 V42 Q58 46 54 46 H36 Z" fill="#d5e4f7" />
+          <path d="M40 18 H52 M40 24 H50 M40 30 H52" stroke="#5b8fd4" strokeWidth="1.4" strokeLinecap="round" />
+        </g>
+        <g className="prop-book-cover-left">
+          <path d="M36 10 H14 Q10 10 10 14 V42 Q10 46 14 46 H36 Z" fill="#5b8fd4" />
+          <path d="M16 18 H30 M16 24 H28 M16 30 H30" stroke="#e8f0fa" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+        </g>
       </svg>
     );
   }
 
-  if (prop === "kids-tech") {
+  if (prop === "community") {
     return (
-      <svg viewBox="0 0 72 52" className="timeline-card-prop-svg" aria-hidden="true">
-        <rect x="4" y="8" width="34" height="40" rx="5" fill="#2b3648" />
-        <rect x="8" y="12" width="26" height="28" rx="3" fill="#7eaaea" />
-        <circle cx="21" cy="44" r="2" fill="#c3cfe2" />
-        <circle cx="52" cy="14" r="7" fill={SKIN} />
-        <path d="M45 14 Q52 8 59 14" fill="#2b2230" />
-        <rect x="46" y="21" width="12" height="16" rx="5" fill="#ff8fab" />
-        <rect x="47" y="36" width="4" height="10" rx="2" fill="#3b4a6b" />
-        <rect x="53" y="36" width="4" height="10" rx="2" fill="#3b4a6b" />
-        <circle cx="21" cy="26" r="5" fill="#fff" opacity="0.35" />
+      <svg
+        viewBox="0 0 84 54"
+        className="timeline-card-prop-svg timeline-card-prop-svg--community"
+        aria-hidden="true"
+      >
+        {/* People / community cluster */}
+        <g className="prop-community-people">
+          <circle cx="18" cy="14" r="6.5" fill={SKIN} />
+          <path d="M11.5 14 Q18 8 24.5 14" fill="#2b2230" />
+          <rect x="12.5" y="20" width="11" height="16" rx="5" fill="#2f6fed" />
+          <circle cx="34" cy="12" r="6.5" fill={SKIN} />
+          <path d="M27.5 12 Q34 6 40.5 12" fill="#2b2230" />
+          <rect x="28.5" y="18" width="11" height="16" rx="5" fill="#48a39a" />
+          <circle cx="26" cy="22" r="5.5" fill={SKIN} />
+          <rect x="21" y="27" width="10" height="14" rx="4.5" fill="#e0b400" />
+        </g>
+        {/* IT / device for youth officer + tech */}
+        <g className="prop-community-device">
+          <rect x="48" y="10" width="30" height="36" rx="4" fill="#2b3648" />
+          <rect x="51.5" y="13.5" width="23" height="26" rx="2" fill="#1a2538" />
+          <g className="prop-community-screen">
+            <rect x="54" y="17" width="12" height="2" rx="1" fill="#7eaaea" />
+            <rect x="54" y="22" width="18" height="2" rx="1" fill="#5b8fd4" opacity="0.85" />
+            <rect x="54" y="27" width="15" height="2" rx="1" fill="#48a39a" opacity="0.8" />
+            <circle cx="63" cy="35" r="2.2" fill="#e0b400" />
+          </g>
+          <circle cx="63" cy="42.5" r="1.4" fill="#c3cfe2" />
+        </g>
       </svg>
     );
   }
 
   if (prop === "laptop") {
     return (
-      <svg viewBox="0 0 72 48" className="timeline-card-prop-svg" aria-hidden="true">
+      <svg
+        viewBox="0 0 72 48"
+        className="timeline-card-prop-svg timeline-card-prop-svg--laptop"
+        aria-hidden="true"
+      >
         <rect x="10" y="4" width="52" height="32" rx="4" fill="#c3cfe2" />
-        <rect x="14" y="8" width="44" height="24" rx="2.5" fill="#2b3648" />
-        <rect x="20" y="12" width="20" height="2.5" rx="1" fill="#5b8fd4" />
-        <rect x="20" y="18" width="32" height="2" rx="1" fill="#7eaaea" opacity="0.8" />
-        <rect x="20" y="23" width="26" height="2" rx="1" fill="#7eaaea" opacity="0.55" />
+        <rect x="14" y="8" width="44" height="24" rx="2.5" fill="#152033" />
+        <g className="prop-laptop-code">
+          <text className="prop-code-line prop-code-line--1" x="18" y="15" fill="#7eaaea">
+            const build = () =&gt; {"{"}
+          </text>
+          <text className="prop-code-line prop-code-line--2" x="22" y="22" fill="#48a39a">
+            ship(impact);
+          </text>
+          <text className="prop-code-line prop-code-line--3" x="18" y="29" fill="#e0b400">
+            {"}"};
+          </text>
+          <rect className="prop-code-caret" x="34" y="24.5" width="1.4" height="5" fill="#e8eef8" />
+        </g>
         <rect x="4" y="36" width="64" height="8" rx="2" fill="#9dbde9" />
         <rect x="28" y="38.5" width="16" height="3" rx="1.5" fill="#5b8fd4" opacity="0.5" />
       </svg>
@@ -179,7 +226,7 @@ const TimelineWalker = ({ role }) => {
       pants: "#3b4a6b",
       shoes: "#4a5568",
       cap: "worker",
-      prop: "kids-tech",
+      prop: "community",
       extra: "badge",
     },
     programmer: {
@@ -215,8 +262,11 @@ const TimelineWalker = ({ role }) => {
   );
 };
 
+const PREVIEW_COUNT = 2;
+
 export const Experience = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedExperience, setSelectedExperience] = useState(null);
   const reduceMotion = useReducedMotion();
   const timelineRef = useRef(null);
 
@@ -322,6 +372,22 @@ export const Experience = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!selectedExperience) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setSelectedExperience(null);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [selectedExperience]);
+
   return (
     <section id="experience" className="experience">
       <svg className="experience-connector" viewBox="0 0 24 80" aria-hidden="true">
@@ -384,65 +450,130 @@ export const Experience = () => {
             </div>
           </motion.div>
 
-          {experiences.map((item, index) => (
-            <div
-              key={index}
-              data-index={index}
-              className={`timeline-item ${item.side} ${
-                activeIndex === index ? "active" : ""
-              }`}
-            >
-              <div className="timeline-content">
-                {activeIndex === index && (
-                  <div
-                    className={`timeline-card-mascot is-active${
-                      reduceMotion ? " is-static" : ""
-                    }`}
-                    aria-hidden="true"
-                  >
-                    <div className="timeline-card-mascot-inner">
-                      <CardPropIcon prop={ROLE_PROPS[index] || "book"} />
+          {experiences.map((item, index) => {
+            const preview = item.description.slice(0, PREVIEW_COUNT);
+
+            return (
+              <div
+                key={index}
+                data-index={index}
+                className={`timeline-item ${item.side} ${
+                  activeIndex === index ? "active" : ""
+                }`}
+              >
+                <button
+                  type="button"
+                  className="timeline-content"
+                  onClick={() => setSelectedExperience(item)}
+                  aria-label={`View details for ${item.title}`}
+                >
+                  {activeIndex === index && (
+                    <div
+                      className={`timeline-card-mascot is-active${
+                        reduceMotion ? " is-static" : ""
+                      }`}
+                      aria-hidden="true"
+                    >
+                      <div className="timeline-card-mascot-inner">
+                        <CardPropIcon prop={ROLE_PROPS[index] || "book"} />
+                      </div>
                     </div>
+                  )}
+
+                  <div className="timeline-card-top">
+                    <span className="timeline-year">{item.year}</span>
+                    <span className="timeline-card-icon" aria-hidden="true">
+                      {item.logo ? (
+                        <img
+                          src={item.logo}
+                          alt=""
+                          className="timeline-org-logo"
+                        />
+                      ) : (
+                        item.cardIcon
+                      )}
+                    </span>
                   </div>
-                )}
 
-                <div className="timeline-card-top">
-                  <span className="timeline-year">{item.year}</span>
-                  <span className="timeline-card-icon" aria-hidden="true">
-                    {item.logo ? (
-                      <img
-                        src={item.logo}
-                        alt=""
-                        className="timeline-org-logo"
-                      />
-                    ) : (
-                      item.cardIcon
-                    )}
+                  <h3>{item.title}</h3>
+
+                  <h4>{item.company}</h4>
+
+                  <p className="timeline-period">{item.period}</p>
+
+                  <ul className="timeline-preview">
+                    {preview.map((desc, i) => (
+                      <li key={i}>{desc}</li>
+                    ))}
+                  </ul>
+
+                  <span className="timeline-view-more">
+                    View details <FaArrowRight />
                   </span>
-                </div>
+                </button>
 
-                <h3>{item.title}</h3>
-
-                <h4>{item.company}</h4>
-
-                <p className="timeline-period">
-                  {item.period}
-                </p>
-
-                <ul>
-                  {item.description.map((desc, i) => (
-                    <li key={i}>{desc}</li>
-                  ))}
-                </ul>
+                <div className="timeline-icon">{item.icon}</div>
               </div>
-
-              <div className="timeline-icon">
-                {item.icon}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
+
+      {selectedExperience && (
+        <div
+          className="experience-modal"
+          onClick={() => setSelectedExperience(null)}
+          role="presentation"
+        >
+          <div
+            className="experience-modal-content"
+            onClick={(event) => event.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="experience-modal-title"
+          >
+            <button
+              type="button"
+              className="experience-modal-close"
+              onClick={() => setSelectedExperience(null)}
+              aria-label="Close experience details"
+            >
+              <FaTimes />
+            </button>
+
+            <div className="experience-modal-header">
+              {selectedExperience.logo ? (
+                <img
+                  src={selectedExperience.logo}
+                  alt={selectedExperience.logoAlt || ""}
+                  className="experience-modal-logo"
+                />
+              ) : (
+                <span className="experience-modal-icon" aria-hidden="true">
+                  {selectedExperience.cardIcon}
+                </span>
+              )}
+              <div>
+                <p className="experience-modal-year">
+                  {selectedExperience.year}
+                </p>
+                <h2 id="experience-modal-title">{selectedExperience.title}</h2>
+                <h3>{selectedExperience.company}</h3>
+                <p className="experience-modal-period">
+                  {selectedExperience.period}
+                </p>
+              </div>
+            </div>
+
+            <h4>Highlights</h4>
+            <ul className="experience-modal-list">
+              {selectedExperience.description.map((desc, i) => (
+                <li key={i}>{desc}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
